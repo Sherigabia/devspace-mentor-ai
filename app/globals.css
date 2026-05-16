@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+:root {
+  /* Light mode colors (fallback) */
+  --background: #ffffff;
+  --foreground: #171717;
+  
+  /* Dark mode colors (primary theme) */
+  --dark-background: #0a0a0b;
+  --dark-surface: #131314;
+  --dark-surface-container: #201f20;
+  --dark-surface-bright: #2a2a2b;
+  --dark-foreground: #e5e2e3;
+  
+  /* Brand colors */
+  --primary: #c0c1ff;
+  --primary-hover: #a5a6ff;
+  --secondary: #4cd7f6;
+  --tertiary: #ffb783;
+  
+  /* Semantic colors */
+  --border: #262626;
+  --border-variant: #464554;
+  --muted: #908fa0;
+  --accent: #6366f1;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0b;
+    --foreground: #e5e2e3;
+  }
+}
+
+/* Force dark mode */
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--dark-background);
+  color: var(--dark-foreground);
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-variant);
+}
+
+/* Hide scrollbar for horizontal scroll containers */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Custom scrollbar utility */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) var(--dark-surface);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--border-variant);
+}
+
+/* Glass morphism effect */
+.glass-surface {
+  background: rgba(32, 31, 32, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+}
+
+/* AI glow effect on hover */
+.ai-glow-hover:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
+  transition: all 0.3s ease;
+}
+
+/* Focus visible styles for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Smooth transitions */
+* {
+  transition-property: color, background-color, border-color, opacity, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Disable transitions for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Made with Bob */

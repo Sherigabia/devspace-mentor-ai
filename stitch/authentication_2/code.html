@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(22, 22, 24, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid #262626;
+        }
+        .glow-border:focus-within {
+            border-color: #6366F1;
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
+        }
+        .geometric-bg {
+            background-image: radial-gradient(circle at 2px 2px, #262626 1px, transparent 0);
+            background-size: 32px 32px;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#4cd7f6",
+                    "inverse-on-surface": "#313031",
+                    "on-tertiary": "#4f2500",
+                    "secondary-container": "#03b5d3",
+                    "error": "#ffb4ab",
+                    "outline-variant": "#464554",
+                    "secondary-fixed-dim": "#4cd7f6",
+                    "on-primary-container": "#0d0096",
+                    "surface-container-high": "#2a2a2b",
+                    "on-tertiary-fixed-variant": "#703700",
+                    "surface-container-low": "#1c1b1c",
+                    "surface-container": "#201f20",
+                    "on-secondary-container": "#00424e",
+                    "on-primary-fixed-variant": "#2f2ebe",
+                    "surface-tint": "#c0c1ff",
+                    "surface-container-highest": "#353436",
+                    "inverse-primary": "#494bd6",
+                    "surface-dim": "#131314",
+                    "on-error": "#690005",
+                    "surface-variant": "#353436",
+                    "on-surface": "#e5e2e3",
+                    "inverse-surface": "#e5e2e3",
+                    "tertiary-container": "#d97721",
+                    "primary-fixed": "#e1e0ff",
+                    "on-primary": "#1000a9",
+                    "primary": "#c0c1ff",
+                    "surface-container-lowest": "#0e0e0f",
+                    "outline": "#908fa0",
+                    "on-surface-variant": "#c7c4d7",
+                    "tertiary-fixed": "#ffdcc5",
+                    "surface-bright": "#3a393a",
+                    "primary-container": "#8083ff",
+                    "on-secondary-fixed-variant": "#004e5c",
+                    "on-background": "#e5e2e3",
+                    "error-container": "#93000a",
+                    "surface": "#131314",
+                    "on-tertiary-fixed": "#301400",
+                    "on-secondary": "#003640",
+                    "secondary-fixed": "#acedff",
+                    "tertiary-fixed-dim": "#ffb783",
+                    "primary-fixed-dim": "#c0c1ff",
+                    "background": "#131314",
+                    "on-tertiary-container": "#452000",
+                    "tertiary": "#ffb783",
+                    "on-primary-fixed": "#07006c",
+                    "on-error-container": "#ffdad6",
+                    "on-secondary-fixed": "#001f26"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "40px",
+                    "base": "4px",
+                    "margin-mobile": "16px",
+                    "container-max": "1440px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Geist"],
+                    "label-md": ["JetBrains Mono"],
+                    "headline-lg-mobile": ["Geist"],
+                    "code-sm": ["JetBrains Mono"],
+                    "display-lg": ["Geist"],
+                    "body-md": ["Geist"],
+                    "headline-lg": ["Geist"],
+                    "headline-md": ["Geist"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "code-sm": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md geometric-bg min-h-screen flex flex-col items-center">
+<!-- Top Navigation Placeholder (TopAppBar Branding only for Auth) -->
+<header class="w-full flex justify-center py-10 px-margin-desktop">
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">terminal</span>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold tracking-tight text-on-surface">Devspace Mentor AI</h1>
+</div>
+</header>
+<main class="flex-grow flex items-center justify-center px-4 w-full">
+<!-- Auth Card -->
+<div class="glass-card w-full max-w-[480px] rounded-xl p-8 flex flex-col gap-8 shadow-2xl relative overflow-hidden">
+<!-- Subtle AI Glow Ornament -->
+<div class="absolute -top-10 -right-10 w-40 h-40 bg-secondary/10 blur-3xl rounded-full"></div>
+<div class="flex flex-col gap-2 relative z-10">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Welcome Back</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Continue your journey with technical intelligence.</p>
+</div>
+<!-- Tabs -->
+<div class="flex border-b border-outline-variant/20 relative z-10">
+<button class="flex-1 py-3 text-primary border-b-2 border-primary font-bold transition-all duration-200">Sign In</button>
+<button class="flex-1 py-3 text-on-surface-variant hover:text-on-surface transition-all duration-200">Sign Up</button>
+</div>
+<!-- Social Logins -->
+<div class="flex flex-col gap-3 relative z-10">
+<button class="w-full h-12 flex items-center justify-center gap-3 bg-surface-container border border-outline-variant/20 rounded-lg hover:bg-surface-variant/50 transition-all duration-200 group active:scale-[0.98]">
+<img alt="GitHub" class="w-5 h-5 invert" data-alt="A clean, minimalist vector logo of GitHub octocat in white against a dark background, representing a professional developer tool integration. The lighting is flat and modern, fitting into a high-end dark mode SaaS interface aesthetic with high contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRvu8Wsnt2aAqiud5ir8jYsKjnJ4S_WTxE3MYKSeSwZ1-BWTmJA3z9p0zE1lCcotP8FrcDT5rbX14AXHm2ihepLO9DVw8fZkQjBsYbPCvrcecEQatRClimZF5XnbRT9WylxmlbdeyNN30kJ-SoU2wz5GvupQT2e_gXzlsU-QVwU0qE46MjNpwbim0n8BGJV_5ZJDihVp3IlxEfT93DY7SEMVpfBftQTag5A5kZAxACSLQBOrWcJ4yl7UFsp3ZpRyNYPTFIIJdlSJM"/>
+<span class="font-label-md text-label-md text-on-surface">Continue with GitHub</span>
+</button>
+<button class="w-full h-12 flex items-center justify-center gap-3 bg-surface-container border border-outline-variant/20 rounded-lg hover:bg-surface-variant/50 transition-all duration-200 group active:scale-[0.98]">
+<img alt="Google" class="w-5 h-5" data-alt="The iconic Google 'G' logo with its signature four colors, rendered in a crisp, high-resolution vector style. It is positioned as a primary social login element within a sophisticated charcoal-themed dashboard. The surrounding environment is professional and sleek." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAa745mYnY-eggL_rIwJs6bN4jpsuaEgFl07RKoDIg-JcOhtYzFAvEy8aVdv04ZY1l96e-asx_IkQhOrU1WZVBjA_x3960bb8u9fDyQ3CxoaEMLz11PstbvDSqSfC7yotIHTTLOEwoP0MC6FEE6H9_Jy1BSVqecf0-ziH7Jsbq5095v_OoTUo_utuqPNvihIvyvTVmsrUd99QtC8qy7bPeut5k4LzckJdNybIt-wmipTsdRItgDchyY7j9vIRT6ydqntWg4yOs_4rg"/>
+<span class="font-label-md text-label-md text-on-surface">Continue with Google</span>
+</button>
+</div>
+<!-- Divider -->
+<div class="flex items-center gap-4 relative z-10">
+<div class="h-[1px] flex-grow bg-outline-variant/20"></div>
+<span class="font-label-md text-label-md text-on-surface-variant/60">OR EMAIL</span>
+<div class="h-[1px] flex-grow bg-outline-variant/20"></div>
+</div>
+<!-- Form Fields -->
+<form class="flex flex-col gap-6 relative z-10">
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant px-1">Email Address</label>
+<div class="glow-border bg-surface-container-lowest border border-outline-variant/30 rounded-lg transition-all duration-200">
+<input class="w-full bg-transparent border-none focus:ring-0 px-4 py-3 text-on-surface placeholder:text-on-surface-variant/30 font-body-md text-body-md" placeholder="name@company.com" type="email"/>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center px-1">
+<label class="font-label-md text-label-md text-on-surface-variant">Password</label>
+<a class="font-label-md text-label-md text-primary hover:underline underline-offset-4" href="#">Forgot password?</a>
+</div>
+<div class="glow-border bg-surface-container-lowest border border-outline-variant/30 rounded-lg transition-all duration-200">
+<input class="w-full bg-transparent border-none focus:ring-0 px-4 py-3 text-on-surface placeholder:text-on-surface-variant/30 font-body-md text-body-md" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<div class="flex items-center gap-3 px-1">
+<input class="w-4 h-4 rounded border-outline-variant bg-surface-container text-primary focus:ring-primary focus:ring-offset-background" id="remember" type="checkbox"/>
+<label class="font-label-md text-label-md text-on-surface-variant cursor-pointer select-none" for="remember">Remember me for 30 days</label>
+</div>
+<!-- Primary Action Button -->
+<button class="w-full h-14 bg-primary text-on-primary font-bold rounded-lg shadow-[0_0_20px_rgba(99,102,241,0.4)] hover:bg-primary-container transition-all duration-300 active:scale-95 flex items-center justify-center gap-2 group" type="submit">
+<span class="font-body-md text-body-md">Sign In to Dashboard</span>
+<span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+</button>
+</form>
+<!-- AI Mentor Quote/Lumina Element -->
+<div class="flex items-start gap-3 p-4 bg-secondary/5 border border-secondary/20 rounded-lg">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<p class="font-code-sm text-code-sm text-secondary leading-relaxed">
+                    "Secure authentication is the first step towards a focused development environment." — Mentor AI
+                </p>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-surface-container-low border-t border-outline-variant/10 py-8 px-margin-desktop mt-20">
+<div class="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex flex-col gap-1 items-center md:items-start">
+<span class="font-bold text-on-surface">© 2024 Devspace Mentor AI</span>
+<span class="font-label-md text-label-md text-on-surface-variant/60">Architected for technical excellence.</span>
+</div>
+<nav class="flex gap-8">
+<a class="font-label-md text-label-md text-on-surface-variant/60 hover:text-secondary transition-colors underline-offset-4 hover:underline" href="#">Documentation</a>
+<a class="font-label-md text-label-md text-on-surface-variant/60 hover:text-secondary transition-colors underline-offset-4 hover:underline" href="#">Privacy Policy</a>
+<a class="font-label-md text-label-md text-on-surface-variant/60 hover:text-secondary transition-colors underline-offset-4 hover:underline" href="#">Terms of Service</a>
+<a class="font-label-md text-label-md text-on-surface-variant/60 hover:text-secondary transition-colors underline-offset-4 hover:underline" href="#">Status</a>
+</nav>
+<div class="flex gap-4">
+<div class="w-8 h-8 rounded-full bg-surface-container border border-outline-variant/20 flex items-center justify-center hover:bg-surface-variant cursor-pointer transition-all">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">language</span>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container border border-outline-variant/20 flex items-center justify-center hover:bg-surface-variant cursor-pointer transition-all">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">help</span>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;family=Geist:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #0A0A0B;
+            font-family: 'Geist', sans-serif;
+        }
+        .glass-card {
+            background: rgba(22, 22, 24, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid #262626;
+        }
+        .ai-glow-border {
+            position: relative;
+        }
+        .ai-glow-border::after {
+            content: '';
+            position: absolute;
+            top: -1px; left: -1px; right: -1px; height: 1px;
+            background: linear-gradient(90deg, transparent, #6366F1, #4cd7f6, transparent);
+            opacity: 0.5;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#07006c",
+                    "on-background": "#e5e2e3",
+                    "surface-container-low": "#1c1b1c",
+                    "secondary-fixed-dim": "#4cd7f6",
+                    "on-tertiary-container": "#452000",
+                    "tertiary": "#ffb783",
+                    "secondary-container": "#03b5d3",
+                    "surface-variant": "#353436",
+                    "inverse-primary": "#494bd6",
+                    "primary-container": "#8083ff",
+                    "primary": "#c0c1ff",
+                    "on-tertiary": "#4f2500",
+                    "surface-dim": "#131314",
+                    "primary-fixed-dim": "#c0c1ff",
+                    "inverse-on-surface": "#313031",
+                    "on-primary-fixed-variant": "#2f2ebe",
+                    "tertiary-fixed": "#ffdcc5",
+                    "on-secondary-fixed-variant": "#004e5c",
+                    "surface": "#131314",
+                    "primary-fixed": "#e1e0ff",
+                    "on-secondary-fixed": "#001f26",
+                    "surface-tint": "#c0c1ff",
+                    "on-error": "#690005",
+                    "surface-container-high": "#2a2a2b",
+                    "error": "#ffb4ab",
+                    "surface-container-lowest": "#0e0e0f",
+                    "background": "#131314",
+                    "on-secondary": "#003640",
+                    "surface-container": "#201f20",
+                    "on-surface": "#e5e2e3",
+                    "on-tertiary-fixed": "#301400",
+                    "on-secondary-container": "#00424e",
+                    "on-primary": "#1000a9",
+                    "tertiary-fixed-dim": "#ffb783",
+                    "surface-bright": "#3a393a",
+                    "secondary": "#4cd7f6",
+                    "inverse-surface": "#e5e2e3",
+                    "on-primary-container": "#0d0096",
+                    "surface-container-highest": "#353436",
+                    "secondary-fixed": "#acedff",
+                    "on-surface-variant": "#c7c4d7",
+                    "on-tertiary-fixed-variant": "#703700",
+                    "outline": "#908fa0",
+                    "tertiary-container": "#d97721",
+                    "error-container": "#93000a",
+                    "outline-variant": "#464554",
+                    "on-error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "40px",
+                    "container-max": "1440px",
+                    "base": "4px",
+                    "margin-mobile": "16px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Geist"],
+                    "code-sm": ["JetBrains Mono"],
+                    "body-lg": ["Geist"],
+                    "headline-md": ["Geist"],
+                    "display-lg": ["Geist"],
+                    "body-md": ["Geist"],
+                    "headline-lg": ["Geist"],
+                    "label-md": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "code-sm": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background selection:bg-primary/30">
+<!-- TopAppBar -->
+<header class="bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30 docked full-width top-0 sticky z-50 flex justify-between items-center px-4 md:px-margin-desktop h-16 w-full">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant hover:opacity-80 transition-opacity cursor-pointer">arrow_back</span>
+<h1 class="font-headline-md text-headline-md font-bold tracking-tight text-on-surface dark:text-on-surface">Devspace Mentor AI</h1>
+</div>
+<nav class="hidden md:flex gap-8">
+<a class="font-label-md text-label-md text-primary transition-colors" href="#">Home</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:opacity-80 transition-opacity" href="#">Repos</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:opacity-80 transition-opacity" href="#">AI Chat</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:opacity-80 transition-opacity" href="#">Path</a>
+</nav>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-primary hover:opacity-80 transition-opacity cursor-pointer">account_circle</span>
+</div>
+</header>
+<main class="relative">
+<!-- Hero Section -->
+<section class="relative pt-20 pb-32 overflow-hidden px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="grid lg:grid-cols-12 gap-gutter items-center">
+<div class="lg:col-span-6 z-10">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-outline-variant/20 bg-surface-container-low mb-6">
+<span class="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_rgba(76,215,246,0.6)]"></span>
+<span class="font-label-md text-label-md text-secondary-fixed-dim">AI Engine v2.0 Live</span>
+</div>
+<h2 class="font-display-lg text-display-lg mb-6 leading-tight">
+                        Understand any <span class="text-primary">codebase</span> in seconds.
+                    </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-lg">
+                        The AI-powered mentor that turns complex repos into clear roadmaps for junior developers.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-[#6366F1] text-white px-8 py-4 rounded-lg font-label-md text-label-md flex items-center gap-2 hover:brightness-110 active:scale-95 transition-all">
+                            Analyze Repository
+                            <span class="material-symbols-outlined">bolt</span>
+</button>
+<button class="bg-transparent border border-[#262626] text-on-surface px-8 py-4 rounded-lg font-label-md text-label-md hover:bg-surface-variant transition-all active:scale-95">
+                            Get Started
+                        </button>
+</div>
+</div>
+<div class="lg:col-span-6 mt-12 lg:mt-0">
+<div class="glass-card p-4 rounded-xl ai-glow-border relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 pointer-events-none"></div>
+<img alt="Code Repository Analysis" class="w-full h-auto rounded-lg opacity-40 mix-blend-luminosity grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="A sophisticated dark-themed user interface showing a complex source code tree being analyzed by artificial intelligence. Luminous indigo and technical cyan lines connect various files and functions, creating a glowing neural network effect over the code. The environment is minimalist and high-tech, with sharp focus on the digital connections and a clean charcoal background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKbaEWvIwmr80yl0DFnLT9FzCISQ-TubcapQb-xrRdXdv-AvKtKVWz9gZZEP77S_Cc6pXFV8YKq0bbh11bJXElH2lvS9ihrtEnO3V5E-3tFP2WJWnrDduE1h-2_Wi5NNVVOlh2oVa-XNSVKRG_9LbMoNojq1lVJCONzvbRgBHlHhS9rpJF6zDfh9t6_rBlc1YFugqpQ6vuRpsC2P67zoxxOcDu922L-PHuEAUIE6r_jVHRj172aM5Ctk84T5eDNTj4fPdMO_m4XKg"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="p-6 rounded-2xl glass-card border-primary/30 flex flex-col items-center text-center max-w-xs shadow-2xl">
+<span class="material-symbols-outlined text-secondary text-5xl mb-4" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<h3 class="font-headline-md text-headline-md mb-2">Analyzing Architecture...</h3>
+<div class="w-full h-1 bg-surface-variant rounded-full mt-4 overflow-hidden">
+<div class="w-2/3 h-full bg-primary shadow-[0_0_12px_rgba(99,102,241,0.8)]"></div>
+</div>
+<p class="font-code-sm text-code-sm text-on-surface-variant mt-4">84% modules mapped</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid Features -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<h3 class="font-headline-lg text-headline-lg mb-12 text-center">Built for <span class="text-secondary">Rapid Onboarding</span></h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Feature 1: Map the Repo -->
+<div class="glass-card p-8 rounded-xl flex flex-col md:col-span-2">
+<div class="mb-6 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
+<span class="material-symbols-outlined text-primary">account_tree</span>
+</div>
+<h4 class="font-headline-md text-headline-md mb-4">Semantic Architecture Maps</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 max-w-md">Get an instant bird's-eye view of how components interact. No more getting lost in 50 nested folders.</p>
+<div class="mt-auto h-40 bg-surface-container rounded-lg border border-outline-variant/30 relative overflow-hidden p-4">
+<div class="flex gap-4">
+<div class="w-20 h-8 rounded bg-primary/20 border border-primary/30"></div>
+<div class="w-24 h-8 rounded bg-secondary/20 border border-secondary/30"></div>
+</div>
+<div class="mt-4 flex gap-4 ml-8">
+<div class="w-32 h-8 rounded bg-surface-container-highest border border-outline-variant"></div>
+</div>
+</div>
+</div>
+<!-- Feature 2: Tech Stack -->
+<div class="glass-card p-8 rounded-xl flex flex-col">
+<div class="mb-6 w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center border border-secondary/20">
+<span class="material-symbols-outlined text-secondary">layers</span>
+</div>
+<h4 class="font-headline-md text-headline-md mb-4">Stack Insights</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Identify design patterns, middleware logic, and third-party dependencies in one click.</p>
+</div>
+<!-- Feature 3: AI Chat -->
+<div class="glass-card p-8 rounded-xl flex flex-col">
+<div class="mb-6 w-12 h-12 rounded-lg bg-tertiary/10 flex items-center justify-center border border-tertiary/20">
+<span class="material-symbols-outlined text-tertiary">chat</span>
+</div>
+<h4 class="font-headline-md text-headline-md mb-4">Ask the Mentor</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">"Where is the user authentication handled?" Devspace answers with specific file references.</p>
+</div>
+<!-- Feature 4: Path Learning -->
+<div class="glass-card p-8 rounded-xl flex flex-col md:col-span-2">
+<div class="mb-6 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
+<span class="material-symbols-outlined text-primary">auto_stories</span>
+</div>
+<div class="flex flex-col md:flex-row gap-8 items-start">
+<div class="flex-1">
+<h4 class="font-headline-md text-headline-md mb-4">Guided Exploration Paths</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Personalized learning journeys that guide you through the codebase based on your specific task.</p>
+</div>
+<div class="bg-surface-container-low border border-outline-variant rounded-lg p-3 w-full md:w-64 font-code-sm text-code-sm">
+<div class="text-primary mb-2">// Learning Path: Auth Flow</div>
+<div class="flex items-center gap-2 text-on-surface-variant"><span class="material-symbols-outlined text-sm">check_circle</span> Step 1: Middleware</div>
+<div class="flex items-center gap-2 text-on-surface-variant"><span class="material-symbols-outlined text-sm text-secondary">radio_button_checked</span> Step 2: JWT Logic</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="py-24 bg-surface-container-lowest border-y border-outline-variant/10">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<h3 class="font-headline-lg text-headline-lg mb-16 text-center">Loved by Developers at</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="glass-card p-8 rounded-xl flex flex-col">
+<div class="flex items-center gap-4 mb-6">
+<img alt="Avatar" class="w-12 h-12 rounded-full border border-outline-variant" data-alt="A professional headshot of a young male software engineer with a friendly expression. He is wearing a dark casual t-shirt, set against a blurred modern office background with soft bokeh. The lighting is natural and flattering, maintaining the high-end minimalist developer aesthetic of the brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1sy_vVh_MUwLFMb6GVuFOp1cWjqGR5pCfVsYvZS0f2sHSWcweOsfrGx5yQ0dnrS1Qen3aMcBrmOHDgwJ-Rj924f0cVuAEm-dAbfDSSvF7wzUCjsIXsqfbMF5T2yYy0hzrgJ-dTaN29jTR7BltwFx1LFWXhYlj5GX7SBTe5-c0j-XNaSGZV_y3rVqWirngB0IEPw-H5UU4Df5ZFWD8Umq5EyGRjzKm0Cl3we57jIvPltWh5acpdIwuL4062deTXdl8JNqZaRo7VOs"/>
+<div>
+<p class="font-label-md text-label-md text-on-surface">James Chen</p>
+<p class="font-code-sm text-code-sm text-on-surface-variant">Junior Dev @ Vercel</p>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface italic italic">"Devspace turned my first week at Vercel from a nightmare into a breeze. I understood the data flow in hours instead of weeks."</p>
+</div>
+<div class="glass-card p-8 rounded-xl flex flex-col border-primary/20">
+<div class="flex items-center gap-4 mb-6">
+<img alt="Avatar" class="w-12 h-12 rounded-full border border-outline-variant" data-alt="A professional headshot of a young female software developer with a confident smile. She has dark hair and is wearing a sleek, dark-colored sweater. The background is a clean, neutral studio setting with soft lighting, reflecting a professional and intelligent tech-industry profile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBojT_jI2jhioYOvSwLVcEKvQ59pTXVFyRIYsUf_aEL69hvLboodwD_qAP3cZJc1DYCFRz4rY3Cm_K6cB3dukstM3einxR8WBQPhtNREAnb_C6g5HGER5H_SaH7e1pw1_CWG2p9DCIUTIhzhEUznHrrcsMZa7r_vGvzxxERXZC49mkNG8iPcYMKXzRkrSsH0GfSK3i6mbruKeowP1w3eB6IH53GUe3ehAxNbj0N3K4Dx2pw66NpR2Z7lX1dWTWuQM8i0EKOZZWG7bI"/>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Sarah Miller</p>
+<p class="font-code-sm text-code-sm text-on-surface-variant">Software Engineer @ Stripe</p>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface italic italic">"The AI doesn't just explain code; it explains intent. It's like having a senior engineer sitting right next to me 24/7."</p>
+</div>
+<div class="glass-card p-8 rounded-xl flex flex-col">
+<div class="flex items-center gap-4 mb-6">
+<img alt="Avatar" class="w-12 h-12 rounded-full border border-outline-variant" data-alt="A professional headshot of a male developer with a modern, stylish look. He is wearing glasses and a simple black hoodie, looking directly at the camera. The scene is lit with a subtle cool-toned blue light from the side, suggesting a focused programming environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdpqI8n5EJVgWovZ4-Rbg1DoVgBDchLCiPqrf2SmkrTXSoithm2iY5hc-SoZKFSrA-iF4KiHkBvfpAcnegJPXacaxL4G2F2ZY8AKRWFuDkE2Y2KNWUNUiCbrrRRt_CFJqvUQsffVkyM3XrbnbE-xjbmZrKYKchHumQQjW5i0-DbUciPmMB2gX5sTnbvgwaLsXy4bKBNvKWYlVdjS-caFKXRZSffhmjjeQ1hY4SWDKPcc0MG_KJeO87bO3GP5S3Qz4HVRv6QfYJK6M"/>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Alex Rivera</p>
+<p class="font-code-sm text-code-sm text-on-surface-variant">Front-end Lead @ Figma</p>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface italic italic">"We use Devspace to onboard all our new hires now. It cut our ramp-up time by almost 60% across the board."</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop text-center max-w-container-max mx-auto">
+<div class="bg-gradient-to-r from-primary/10 via-secondary/5 to-primary/10 rounded-3xl p-12 md:p-20 border border-outline-variant/30">
+<h3 class="font-display-lg text-display-lg mb-8">Stop guessing. Start building.</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-12 max-w-2xl mx-auto">Join 10,000+ developers who are mastering complex codebases with AI precision.</p>
+<div class="flex flex-col sm:flex-row justify-center gap-4">
+<button class="bg-[#6366F1] text-white px-10 py-5 rounded-lg font-label-md text-label-md hover:brightness-110 active:scale-95 transition-all">Analyze My First Repo</button>
+<button class="bg-surface-container-high border border-outline-variant text-on-surface px-10 py-5 rounded-lg font-label-md text-label-md hover:bg-surface-variant transition-all active:scale-95">Talk to Sales</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest w-full px-margin-mobile py-8 flex flex-col items-center gap-4 border-t border-outline-variant/10">
+<div class="flex flex-col md:flex-row items-center justify-between w-full max-w-container-max md:px-margin-desktop gap-6">
+<div class="flex flex-col items-center md:items-start gap-2">
+<span class="font-label-md text-label-md font-bold text-primary">Devspace Mentor AI</span>
+<p class="font-body-md text-body-md text-on-surface-variant">© 2024 Devspace Mentor AI. Built for Developers.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Terms</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Docs</a>
+</div>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile only) -->
+<div class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 bg-surface-container/90 dark:bg-surface-container/90 backdrop-blur-lg border-t border-outline-variant/20 rounded-t-xl shadow-lg">
+<div class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed-dim bg-primary-container/10 rounded-xl px-3 py-1">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">database</span>
+<span class="font-label-md text-label-md">Repos</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="font-label-md text-label-md">AI Chat</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="font-label-md text-label-md">Path</span>
+</div>
+</div>
+</body></html>

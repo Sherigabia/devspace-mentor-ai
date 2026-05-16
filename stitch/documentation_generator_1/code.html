@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;family=Geist:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .glass-effect {
+      backdrop-filter: blur(12px);
+      background: rgba(22, 22, 24, 0.7);
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0A0A0B;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #262626;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #6366F1;
+    }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary-fixed": "#07006c",
+            "on-background": "#e5e2e3",
+            "surface-container-low": "#1c1b1c",
+            "secondary-fixed-dim": "#4cd7f6",
+            "on-tertiary-container": "#452000",
+            "tertiary": "#ffb783",
+            "secondary-container": "#03b5d3",
+            "surface-variant": "#353436",
+            "inverse-primary": "#494bd6",
+            "primary-container": "#8083ff",
+            "primary": "#c0c1ff",
+            "on-tertiary": "#4f2500",
+            "surface-dim": "#131314",
+            "primary-fixed-dim": "#c0c1ff",
+            "inverse-on-surface": "#313031",
+            "on-primary-fixed-variant": "#2f2ebe",
+            "tertiary-fixed": "#ffdcc5",
+            "on-secondary-fixed-variant": "#004e5c",
+            "surface": "#131314",
+            "primary-fixed": "#e1e0ff",
+            "on-secondary-fixed": "#001f26",
+            "surface-tint": "#c0c1ff",
+            "on-error": "#690005",
+            "surface-container-high": "#2a2a2b",
+            "error": "#ffb4ab",
+            "surface-container-lowest": "#0e0e0f",
+            "background": "#131314",
+            "on-secondary": "#003640",
+            "surface-container": "#201f20",
+            "on-surface": "#e5e2e3",
+            "on-tertiary-fixed": "#301400",
+            "on-secondary-container": "#00424e",
+            "on-primary": "#1000a9",
+            "tertiary-fixed-dim": "#ffb783",
+            "surface-bright": "#3a393a",
+            "secondary": "#4cd7f6",
+            "inverse-surface": "#e5e2e3",
+            "on-primary-container": "#0d0096",
+            "surface-container-highest": "#353436",
+            "secondary-fixed": "#acedff",
+            "on-surface-variant": "#c7c4d7",
+            "on-tertiary-fixed-variant": "#703700",
+            "outline": "#908fa0",
+            "tertiary-container": "#d97721",
+            "error-container": "#93000a",
+            "outline-variant": "#464554",
+            "on-error-container": "#ffdad6"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-desktop": "40px",
+            "container-max": "1440px",
+            "base": "4px",
+            "margin-mobile": "16px",
+            "gutter": "24px"
+          },
+          "fontFamily": {
+            "headline-lg-mobile": ["Geist"],
+            "code-sm": ["JetBrains Mono"],
+            "body-lg": ["Geist"],
+            "headline-md": ["Geist"],
+            "display-lg": ["Geist"],
+            "body-md": ["Geist"],
+            "headline-lg": ["Geist"],
+            "label-md": ["JetBrains Mono"]
+          },
+          "fontSize": {
+            "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+            "code-sm": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+            "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+            "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+            "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary/30 min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30 docked full-width top-0 sticky z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 w-full">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary hover:opacity-80 transition-opacity cursor-pointer">arrow_back</span>
+<h1 class="font-headline-md text-headline-md font-bold tracking-tight text-on-surface">Devspace Mentor AI</h1>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center gap-8">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Home</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Repos</a>
+<a class="font-label-md text-label-md text-primary transition-colors border-b-2 border-primary pb-1" href="#">Docs</a>
+</div>
+<span class="material-symbols-outlined text-on-surface hover:opacity-80 transition-opacity cursor-pointer">account_circle</span>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-8 md:py-12 mb-20">
+<!-- Screen Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-10">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="text-secondary font-label-md text-label-md uppercase tracking-widest">Documentation Tool</span>
+<div class="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_rgba(76,215,246,0.6)]"></div>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Readme Generator</h2>
+<p class="text-on-surface-variant max-w-xl mt-2 font-body-md text-body-md">AI-optimized documentation for your repository. Technical, precise, and standardized.</p>
+</div>
+<div class="flex items-center gap-3 bg-surface-container border border-outline-variant p-1 rounded-xl">
+<button class="px-4 py-2 rounded-lg bg-primary text-on-primary-container font-label-md text-label-md flex items-center gap-2 transition-transform active:scale-95">
+<span class="material-symbols-outlined text-[18px]">visibility</span> Preview
+        </button>
+<button class="px-4 py-2 rounded-lg text-on-surface-variant font-label-md text-label-md flex items-center gap-2 hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[18px]">edit</span> Edit
+        </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Left Rail: Sections Navigation -->
+<aside class="md:col-span-3 space-y-4">
+<div class="bg-surface-container p-6 rounded-xl border border-outline-variant">
+<h3 class="font-label-md text-label-md text-primary mb-4 uppercase tracking-tighter">Document Sections</h3>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center justify-between p-3 rounded-lg bg-primary-container/10 border border-primary/20 text-primary group" href="#setup">
+<span class="font-label-md text-label-md">1. Setup</span>
+<span class="material-symbols-outlined text-[18px] opacity-0 group-hover:opacity-100 transition-opacity">drag_indicator</span>
+</a>
+<a class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-variant border border-transparent text-on-surface-variant transition-colors group" href="#usage">
+<span class="font-label-md text-label-md">2. Usage</span>
+<span class="material-symbols-outlined text-[18px] opacity-0 group-hover:opacity-100 transition-opacity">drag_indicator</span>
+</a>
+<a class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-variant border border-transparent text-on-surface-variant transition-colors group" href="#architecture">
+<span class="font-label-md text-label-md">3. Architecture</span>
+<span class="material-symbols-outlined text-[18px] opacity-0 group-hover:opacity-100 transition-opacity">drag_indicator</span>
+</a>
+<a class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-variant border border-transparent text-on-surface-variant transition-colors group" href="#contributing">
+<span class="font-label-md text-label-md">4. Contributing</span>
+<span class="material-symbols-outlined text-[18px] opacity-0 group-hover:opacity-100 transition-opacity">drag_indicator</span>
+</a>
+</nav>
+<button class="w-full mt-6 py-3 rounded-lg border-2 border-dashed border-outline-variant text-on-surface-variant font-label-md text-label-md hover:border-primary/50 hover:text-primary transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">add</span> Add Custom Section
+          </button>
+</div>
+<!-- AI Insights Card -->
+<div class="bg-surface-container p-6 rounded-xl border border-outline-variant relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-6xl text-secondary">smart_toy</span>
+</div>
+<h3 class="font-label-md text-label-md text-secondary mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">auto_awesome</span> Mentor Suggestion
+          </h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            "Your architecture section lacks a flow diagram. I can generate a Mermaid.js diagram based on your source code analysis."
+          </p>
+<button class="mt-4 text-secondary font-label-md text-label-md flex items-center gap-1 hover:underline">
+            Apply Suggestion <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</aside>
+<!-- Main Preview Area -->
+<section class="md:col-span-9">
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden shadow-2xl">
+<!-- Window Header -->
+<div class="bg-surface-container-high px-6 py-3 flex justify-between items-center border-b border-outline-variant/30">
+<div class="flex items-center gap-2">
+<div class="flex gap-1.5">
+<div class="w-3 h-3 rounded-full bg-error/40"></div>
+<div class="w-3 h-3 rounded-full bg-tertiary/40"></div>
+<div class="w-3 h-3 rounded-full bg-secondary/40"></div>
+</div>
+<span class="ml-4 font-code-sm text-code-sm text-on-surface-variant">README.md</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-code-sm text-code-sm text-outline">Markdown • 2.4kb</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">content_copy</span>
+</div>
+</div>
+<!-- Markdown Content -->
+<div class="p-8 md:p-12 font-body-md text-body-md text-on-background space-y-8 overflow-y-auto max-h-[700px]">
+<!-- Header Section -->
+<div class="border-b border-outline-variant/20 pb-8">
+<h1 class="font-headline-lg text-headline-lg mb-2">Devspace Documentation Generator</h1>
+<p class="text-on-surface-variant italic">Automated, AI-driven technical documentation for modern developers.</p>
+<div class="flex gap-2 mt-4">
+<span class="px-3 py-1 rounded bg-primary-container/10 border border-primary/30 text-primary font-code-sm text-code-sm">license: MIT</span>
+<span class="px-3 py-1 rounded bg-secondary-container/10 border border-secondary/30 text-secondary font-code-sm text-code-sm">version: 1.0.4</span>
+</div>
+</div>
+<!-- Setup Section -->
+<section id="setup">
+<h2 class="font-headline-md text-headline-md border-b border-outline-variant/10 pb-2 mb-4">🚀 Setup</h2>
+<p class="mb-4 text-on-surface-variant">Initialize the mentor environment by running the following command in your root directory:</p>
+<div class="bg-surface-dim p-6 rounded-lg border border-outline-variant relative group">
+<pre class="font-code-sm text-code-sm text-secondary-fixed-dim"><code>npx @devspace/mentor-ai init --template-pro</code></pre>
+<div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">content_copy</span>
+</div>
+</div>
+</section>
+<!-- Usage Section -->
+<section id="usage">
+<h2 class="font-headline-md text-headline-md border-b border-outline-variant/10 pb-2 mb-4">🛠 Usage</h2>
+<p class="mb-4 text-on-surface-variant">The documentation generator reads your source code comments and exports structured markdown files.</p>
+<ul class="list-disc pl-6 space-y-2 text-on-surface-variant">
+<li><strong class="text-on-surface">Auto-Scan:</strong> Scans `/src` for technical debt and documentation gaps.</li>
+<li><strong class="text-on-surface">GPT-4 Integration:</strong> Context-aware descriptions of complex logic.</li>
+<li><strong class="text-on-surface">Multi-Format:</strong> Export to MD, HTML, or directly to Wiki.</li>
+</ul>
+</section>
+<!-- Architecture Image Placeholder -->
+<section id="architecture">
+<h2 class="font-headline-md text-headline-md border-b border-outline-variant/10 pb-2 mb-4">🏗 Architecture</h2>
+<div class="w-full h-64 rounded-xl border border-outline-variant/30 overflow-hidden mb-4 bg-surface-container-low flex items-center justify-center">
+<img class="w-full h-full object-cover opacity-60" data-alt="A clean, minimalist 3D technical architectural diagram showing interconnected glass nodes and glowing cyan data streams. The lighting is low-key with sharp indigo highlights, creating a premium cybersecurity feel. The background is a deep charcoal, and the overall aesthetic is technical, professional, and sophisticated, mirroring a high-end software dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBA2ODA2Av3-KoWF9iPKv-lbnH5nQQMsI3yhkKqPR3sFWqVF17QdGVEPZT6R3WC3pEoW3A6fZhJ6DutcQmgXn_QD_EaCmwaQWZdqPrUjVdkVHBFzQuxUhFOVwFwaPRqzzwRGTQihB53lHr75_OlnDZko_UMkGmUbZo4_A2HG96oPgtt7oRl0INo0DKp7mRFV4nlEXw0S07qjzCIj53C1Jwgeqx1z2dch0STYFfjQtdkBe7cb9JnjxI0ve62rE5wN-wfnl6MRedI0Ow"/>
+</div>
+<p class="text-on-surface-variant">The system follows a modular micro-plugin architecture ensuring high extensibility for custom languages.</p>
+</section>
+</div>
+<!-- Bottom Action Bar -->
+<div class="bg-surface-container-high px-8 py-6 flex flex-col md:flex-row justify-between items-center gap-4 border-t border-outline-variant/30">
+<p class="font-code-sm text-code-sm text-outline">Last generated: 2 mins ago</p>
+<div class="flex items-center gap-3 w-full md:w-auto">
+<button class="flex-1 md:flex-none px-6 py-3 rounded-lg border border-outline-variant text-on-surface font-label-md text-label-md hover:bg-surface-variant transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">download</span> Download .md
+              </button>
+<button class="flex-1 md:flex-none px-6 py-3 rounded-lg bg-primary text-on-primary-fixed font-label-md text-label-md hover:shadow-[0_0_20px_rgba(128,131,255,0.3)] transition-all flex items-center justify-center gap-2 group">
+<span class="material-symbols-outlined group-hover:rotate-12 transition-transform">cloud_upload</span> Push to GitHub
+              </button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full px-margin-mobile py-8 flex flex-col items-center gap-4 bg-surface-container-lowest border-t border-outline-variant/10 relative">
+<div class="font-label-md text-label-md font-bold text-primary">Devspace Mentor AI</div>
+<p class="font-body-md text-body-md text-secondary">© 2024 Devspace Mentor AI. Built for Developers.</p>
+<div class="flex gap-6">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Privacy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Terms</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Docs</a>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 bg-surface-container/90 backdrop-blur-lg border-t border-outline-variant/20 shadow-lg rounded-t-xl">
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">database</span>
+<span class="font-label-md text-label-md">Repos</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="font-label-md text-label-md">AI Chat</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary bg-primary-container/10 rounded-xl px-3 py-1">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="font-label-md text-label-md">Path</span>
+</div>
+</nav>
+</body></html>

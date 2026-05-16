@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;family=Geist:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #0A0A0B;
+            color: #e5e2e3;
+        }
+        .glass-surface {
+            background: rgba(22, 22, 24, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid #262626;
+        }
+        .ai-glow-border:hover {
+            border-color: #6366F1;
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.15);
+        }
+        .recessed-input {
+            background-color: #0A0A0B;
+            border: 1px solid #262626;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#07006c",
+                        "on-background": "#e5e2e3",
+                        "surface-container-low": "#1c1b1c",
+                        "secondary-fixed-dim": "#4cd7f6",
+                        "on-tertiary-container": "#452000",
+                        "tertiary": "#ffb783",
+                        "secondary-container": "#03b5d3",
+                        "surface-variant": "#353436",
+                        "inverse-primary": "#494bd6",
+                        "primary-container": "#8083ff",
+                        "primary": "#c0c1ff",
+                        "on-tertiary": "#4f2500",
+                        "surface-dim": "#131314",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "inverse-on-surface": "#313031",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "tertiary-fixed": "#ffdcc5",
+                        "on-secondary-fixed-variant": "#004e5c",
+                        "surface": "#131314",
+                        "primary-fixed": "#e1e0ff",
+                        "on-secondary-fixed": "#001f26",
+                        "surface-tint": "#c0c1ff",
+                        "on-error": "#690005",
+                        "surface-container-high": "#2a2a2b",
+                        "error": "#ffb4ab",
+                        "surface-container-lowest": "#0e0e0f",
+                        "background": "#131314",
+                        "on-secondary": "#003640",
+                        "surface-container": "#201f20",
+                        "on-surface": "#e5e2e3",
+                        "on-tertiary-fixed": "#301400",
+                        "on-secondary-container": "#00424e",
+                        "on-primary": "#1000a9",
+                        "tertiary-fixed-dim": "#ffb783",
+                        "surface-bright": "#3a393a",
+                        "secondary": "#4cd7f6",
+                        "inverse-surface": "#e5e2e3",
+                        "on-primary-container": "#0d0096",
+                        "surface-container-highest": "#353436",
+                        "secondary-fixed": "#acedff",
+                        "on-surface-variant": "#c7c4d7",
+                        "on-tertiary-fixed-variant": "#703700",
+                        "outline": "#908fa0",
+                        "tertiary-container": "#d97721",
+                        "error-container": "#93000a",
+                        "outline-variant": "#464554",
+                        "on-error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "container-max": "1440px",
+                        "base": "4px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Geist"],
+                        "code-sm": ["JetBrains Mono"],
+                        "body-lg": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "body-md": ["Geist"],
+                        "headline-lg": ["Geist"],
+                        "label-md": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "code-sm": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- Top App Bar -->
+<header class="bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30 docked full-width top-0 sticky z-50 flex justify-between items-center px-margin-mobile h-16 w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary hover:opacity-80 transition-opacity Active: scale-95 duration-150 cursor-pointer">arrow_back</span>
+<h1 class="font-headline-md text-headline-md-mobile font-bold tracking-tight text-on-surface dark:text-on-surface">Devspace Mentor AI</h1>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary hover:opacity-80 transition-opacity Active: scale-95 duration-150 cursor-pointer">account_circle</span>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-8">
+<!-- User Greeting -->
+<section class="mb-10">
+<div class="flex items-center gap-2 mb-2">
+<div class="w-2 h-2 rounded-full bg-secondary animate-pulse shadow-[0_0_10px_#4cd7f6]"></div>
+<span class="font-label-md text-label-md text-secondary uppercase tracking-widest">Active Session</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg-mobile text-on-surface mb-2">Welcome back, Developer</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Your mentor has reviewed 4 new commits since your last login. Let's optimize your workflow.</p>
+</section>
+<!-- Quick Stats -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-12">
+<div class="bg-surface-container border border-outline-variant p-6 rounded-xl flex items-center justify-between group ai-glow-border transition-all">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant mb-1">Repos Analyzed</p>
+<h3 class="font-display-lg text-headline-lg text-primary">12</h3>
+</div>
+<span class="material-symbols-outlined text-4xl text-primary/20 group-hover:text-primary transition-colors">database</span>
+</div>
+<div class="bg-surface-container border border-outline-variant p-6 rounded-xl flex items-center justify-between group ai-glow-border transition-all">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant mb-1">Skills Improved</p>
+<h3 class="font-display-lg text-headline-lg text-secondary">4</h3>
+</div>
+<span class="material-symbols-outlined text-4xl text-secondary/20 group-hover:text-secondary transition-colors">auto_stories</span>
+</div>
+<div class="bg-surface-container border border-outline-variant p-6 rounded-xl flex items-center justify-between group ai-glow-border transition-all">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant mb-1">Commits Helped</p>
+<h3 class="font-display-lg text-headline-lg text-tertiary">24</h3>
+</div>
+<span class="material-symbols-outlined text-4xl text-tertiary/20 group-hover:text-tertiary transition-colors">terminal</span>
+</div>
+</div>
+<!-- Recent Analyses (Horizontal Scroll) -->
+<section class="mb-12">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline-md text-headline-md-mobile">Recent Analyses</h3>
+<button class="font-label-md text-label-md text-primary flex items-center gap-1 hover:underline">
+                    View All <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="flex gap-gutter overflow-x-auto pb-6 scrollbar-hide">
+<!-- Analysis Card 1 -->
+<div class="min-w-[300px] md:min-w-[340px] bg-surface-container border border-outline-variant rounded-xl overflow-hidden group hover:border-primary/50 transition-all">
+<div class="h-40 relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A high-fidelity macro photograph of a dark computer screen displaying vibrant syntax-highlighted code in shades of indigo and cyan. The shallow depth of field creates a professional bokeh effect in the background, emphasizing the technical precision of the Devspace Mentor AI's coding environment. The lighting is low-key with a soft neon glow emanating from the screen elements." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3kIzgSJo7_yqaPLkBNeRAmGOsZSUcvLVMmFhEhOQQZFoJexB8TEuigaC7rKLKpdlH6m03HLDzrgBeVCze9JnmbN8uyHmugzKljYdM7YgQDv7KvpeO3jq9g0svD3-dduQvQGKeQ7R4y1LbtGX5t4bGDV0Kow1bYIVlpcrQqUb3pYx1GUFK_3ZU-mqQ0Zff4hSTZPmqRX0i2pW4guwAXsEx3oKxAGwF10aJqt5t56S7t5G2uVDkq_0OYAkx78qLlX1QnwMtkK03PZ8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container to-transparent"></div>
+<div class="absolute top-4 left-4">
+<span class="bg-primary-container/20 border border-primary/30 text-primary px-3 py-1 rounded-full font-label-md text-xs backdrop-blur-md">React Native</span>
+</div>
+</div>
+<div class="p-5">
+<h4 class="font-headline-md text-body-lg mb-2">React Native Core</h4>
+<div class="flex items-center gap-4 mb-4">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-secondary">verified</span>
+<span class="font-label-md text-xs text-on-surface-variant">92% Health</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-tertiary">bug_report</span>
+<span class="font-label-md text-xs text-on-surface-variant">2 Fixes</span>
+</div>
+</div>
+<button class="w-full py-2 bg-outline-variant/30 hover:bg-primary hover:text-on-primary rounded-lg font-label-md transition-all text-sm">Open Audit</button>
+</div>
+</div>
+<!-- Analysis Card 2 -->
+<div class="min-w-[300px] md:min-w-[340px] bg-surface-container border border-outline-variant rounded-xl overflow-hidden group hover:border-primary/50 transition-all">
+<div class="h-40 relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A conceptual digital illustration of abstract data streams and API connection nodes glowing in deep violet and electric blue against a charcoal background. The visual style is minimalist and high-tech, representing the complex architecture of a modern API wrapper. The composition uses geometric lines and soft gradients to convey a sense of intelligent, organized information flow." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCv6U8mF_bu1cEZoyT5_jfQZFhHcrs1g_1Fi1RdZrnLR1ZvDCn9rHwpxLYhJPAB3TbZnouJD3_MPWcygLsP6hGXwHJJFpDF1Y4V6Lc-g_lf4NdqvH8xvWXwPOgoR-YbyFFjMtfSaGd15FX22-7TtSB0lR84DmohheXbs-9AW3WifvQ1mznEbsz59xBzHpjW9pDp5XTjXAT1pWmk-LKGQ2zaUpr-3y2mALtSbK08VXNafFgkBVy-1CPIp1N-H6fdT72RxDPEbygZEOk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container to-transparent"></div>
+<div class="absolute top-4 left-4">
+<span class="bg-tertiary-container/20 border border-tertiary/30 text-tertiary px-3 py-1 rounded-full font-label-md text-xs backdrop-blur-md">Node.js</span>
+</div>
+</div>
+<div class="p-5">
+<h4 class="font-headline-md text-body-lg mb-2">Stripe API Wrapper</h4>
+<div class="flex items-center gap-4 mb-4">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-secondary">verified</span>
+<span class="font-label-md text-xs text-on-surface-variant">88% Health</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-tertiary">warning</span>
+<span class="font-label-md text-xs text-on-surface-variant">1 Security Fix</span>
+</div>
+</div>
+<button class="w-full py-2 bg-outline-variant/30 hover:bg-primary hover:text-on-primary rounded-lg font-label-md transition-all text-sm">Open Audit</button>
+</div>
+</div>
+<!-- Analysis Card 3 -->
+<div class="min-w-[300px] md:min-w-[340px] bg-surface-container border border-outline-variant rounded-xl overflow-hidden group hover:border-primary/50 transition-all">
+<div class="h-40 relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A sleek, close-up shot of a modern workstation with a mechanical keyboard and a high-resolution display showing complex code patterns. The lighting is moody, focused on the textures of the hardware and the sharp, glowing pixels of the screen. The aesthetic is professional and developer-centric, utilizing a palette of deep grays, blacks, and subtle indigo accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgk4EycrH-0DdA4e7TUEI5PCv-3-21r61mITW8eYyL1rYR_Tms1lCTC_z07phzY8Lx0xyT3hkXF1AY0GT0r5XokFgmEMwo40L4fZeJhUNbi6sMgegPwQBrSOv5bpB5qlyUKCnLwbbwZWLF2iuT66snjfo-phTPAdZNdfwuah7hGWiV_LEvXmTepnW-MphssDkOgh4GdEOD3ZShjK1O_T-pDmVzSnleIlqRKoiZw-6Nb7CiGorLbVxn2LBRt73tZIpSefyOG_72BkI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container to-transparent"></div>
+<div class="absolute top-4 left-4">
+<span class="bg-secondary-container/20 border border-secondary/30 text-secondary px-3 py-1 rounded-full font-label-md text-xs backdrop-blur-md">GraphQL</span>
+</div>
+</div>
+<div class="p-5">
+<h4 class="font-headline-md text-body-lg mb-2">Inventory Schema</h4>
+<div class="flex items-center gap-4 mb-4">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-secondary">verified</span>
+<span class="font-label-md text-xs text-on-surface-variant">96% Health</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-tertiary">bolt</span>
+<span class="font-label-md text-xs text-on-surface-variant">Optimized</span>
+</div>
+</div>
+<button class="w-full py-2 bg-outline-variant/30 hover:bg-primary hover:text-on-primary rounded-lg font-label-md transition-all text-sm">Open Audit</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Layout: AI Insights & Lumina Activity -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- AI Activity Overview -->
+<section class="lg:col-span-2 bg-surface-container border border-outline-variant rounded-xl p-6">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<h3 class="font-headline-md text-body-lg font-bold">AI Insights Overview</h3>
+</div>
+<span class="font-label-md text-xs text-on-surface-variant">Last updated 2m ago</span>
+</div>
+<div class="space-y-4">
+<!-- Insight Item 1 -->
+<div class="flex gap-4 p-4 rounded-lg bg-surface hover:bg-surface-bright transition-colors border border-outline-variant/50">
+<div class="mt-1 flex-shrink-0">
+<span class="material-symbols-outlined text-secondary">tips_and_updates</span>
+</div>
+<div>
+<h5 class="font-body-md font-bold text-on-surface mb-1">Redundant Hook Detection</h5>
+<p class="font-body-md text-on-surface-variant text-sm">In `useAuth.ts`, the `useEffect` hook can be simplified by removing the `token` dependency. This will reduce unnecessary re-renders in the main app layout.</p>
+<div class="mt-3 flex gap-2">
+<span class="px-2 py-0.5 rounded bg-outline-variant/20 font-code-sm text-xs border border-outline-variant/30">src/hooks/useAuth.ts</span>
+</div>
+</div>
+</div>
+<!-- Insight Item 2 -->
+<div class="flex gap-4 p-4 rounded-lg bg-surface hover:bg-surface-bright transition-colors border border-outline-variant/50">
+<div class="mt-1 flex-shrink-0">
+<span class="material-symbols-outlined text-tertiary">security</span>
+</div>
+<div>
+<h5 class="font-body-md font-bold text-on-surface mb-1">Security Vulnerability Found</h5>
+<p class="font-body-md text-on-surface-variant text-sm">Detected a potential secret leak in `.github/workflows/deploy.yml`. Environment variables should be stored in GitHub Secrets rather than hardcoded.</p>
+<div class="mt-3 flex gap-2">
+<span class="px-2 py-0.5 rounded bg-error-container/20 text-error font-code-sm text-xs border border-error/30">Action Required</span>
+</div>
+</div>
+</div>
+<!-- Insight Item 3 -->
+<div class="flex gap-4 p-4 rounded-lg bg-surface hover:bg-surface-bright transition-colors border border-outline-variant/50">
+<div class="mt-1 flex-shrink-0">
+<span class="material-symbols-outlined text-primary">speed</span>
+</div>
+<div>
+<h5 class="font-body-md font-bold text-on-surface mb-1">Performance Bottleneck</h5>
+<p class="font-body-md text-on-surface-variant text-sm">The `ListRenderer` component is re-rendering too frequently. Consider using `React.memo` or `useMemo` for the heavy sorting logic.</p>
+<div class="mt-3 flex gap-2">
+<span class="px-2 py-0.5 rounded bg-outline-variant/20 font-code-sm text-xs border border-outline-variant/30">Optimization</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Lumina AI Mentor Sidebar -->
+<section class="space-y-gutter">
+<div class="glass-surface p-6 rounded-xl border-outline-variant relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-secondary">blur_on</span>
+</div>
+<div class="flex items-center gap-2 mb-4">
+<div class="w-3 h-3 rounded-full bg-secondary shadow-[0_0_8px_#4cd7f6]"></div>
+<h4 class="font-label-md text-secondary tracking-widest uppercase">Lumina Assistant</h4>
+</div>
+<p class="font-body-md text-on-surface mb-6 leading-relaxed italic">"You're making great progress on the React Native Core repo. I've prepared a personalized learning path based on your recent commits."</p>
+<button class="w-full py-3 bg-primary text-on-primary rounded-xl font-bold font-label-md hover:shadow-[0_0_20px_rgba(192,193,255,0.4)] transition-all">Start Daily Lesson</button>
+</div>
+<div class="bg-surface-container border border-outline-variant rounded-xl p-6">
+<h4 class="font-headline-md text-body-lg font-bold mb-4">Learning Progress</h4>
+<div class="space-y-5">
+<div>
+<div class="flex justify-between mb-2">
+<span class="font-label-md text-xs text-on-surface-variant">Design Patterns</span>
+<span class="font-label-md text-xs text-primary">75%</span>
+</div>
+<div class="h-1.5 w-full bg-outline-variant/30 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[75%] rounded-full"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="font-label-md text-xs text-on-surface-variant">Performance Ops</span>
+<span class="font-label-md text-xs text-secondary">42%</span>
+</div>
+<div class="h-1.5 w-full bg-outline-variant/30 rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[42%] rounded-full"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="font-label-md text-xs text-on-surface-variant">Security Fundamentals</span>
+<span class="font-label-md text-xs text-tertiary">90%</span>
+</div>
+<div class="h-1.5 w-full bg-outline-variant/30 rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[90%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full px-margin-mobile py-8 flex flex-col items-center gap-4 bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant/10 relative">
+<p class="font-label-md text-label-md font-bold text-primary">Devspace Mentor AI</p>
+<p class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim text-center">© 2024 Devspace Mentor AI. Built for Developers.</p>
+<div class="flex gap-6">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Privacy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Terms</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Docs</a>
+</div>
+</footer>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 bg-surface-container/90 dark:bg-surface-container/90 backdrop-blur-lg border-t border-outline-variant/20 shadow-lg rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed-dim bg-primary-container/10 rounded-xl px-3 py-1 scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">database</span>
+<span class="font-label-md text-label-md">Repos</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="font-label-md text-label-md">AI Chat</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="font-label-md text-label-md">Path</span>
+</a>
+</nav>
+</body></html>

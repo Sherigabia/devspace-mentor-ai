@@ -1,0 +1,372 @@
+<html class="dark"><head>
+<meta charset="utf-8"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #131314;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #262626;
+            border-radius: 10px;
+        }
+        .glass-panel {
+            background: rgba(22, 22, 24, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid #262626;
+        }
+        .ai-glow-border {
+            border: 1px solid #6366F1;
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.15);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#4cd7f6",
+                        "inverse-on-surface": "#313031",
+                        "on-tertiary": "#4f2500",
+                        "secondary-container": "#03b5d3",
+                        "error": "#ffb4ab",
+                        "outline-variant": "#464554",
+                        "secondary-fixed-dim": "#4cd7f6",
+                        "on-primary-container": "#0d0096",
+                        "surface-container-high": "#2a2a2b",
+                        "on-tertiary-fixed-variant": "#703700",
+                        "surface-container-low": "#1c1b1c",
+                        "surface-container": "#201f20",
+                        "on-secondary-container": "#00424e",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "surface-tint": "#c0c1ff",
+                        "surface-container-highest": "#353436",
+                        "inverse-primary": "#494bd6",
+                        "surface-dim": "#131314",
+                        "on-error": "#690005",
+                        "surface-variant": "#353436",
+                        "on-surface": "#e5e2e3",
+                        "inverse-surface": "#e5e2e3",
+                        "tertiary-container": "#d97721",
+                        "primary-fixed": "#e1e0ff",
+                        "on-primary": "#1000a9",
+                        "primary": "#c0c1ff",
+                        "surface-container-lowest": "#0e0e0f",
+                        "outline": "#908fa0",
+                        "on-surface-variant": "#c7c4d7",
+                        "tertiary-fixed": "#ffdcc5",
+                        "surface-bright": "#3a393a",
+                        "primary-container": "#8083ff",
+                        "on-secondary-fixed-variant": "#004e5c",
+                        "on-background": "#e5e2e3",
+                        "error-container": "#93000a",
+                        "surface": "#131314",
+                        "on-tertiary-fixed": "#301400",
+                        "on-secondary": "#003640",
+                        "secondary-fixed": "#acedff",
+                        "tertiary-fixed-dim": "#ffb783",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "background": "#131314",
+                        "on-tertiary-container": "#452000",
+                        "tertiary": "#ffb783",
+                        "on-primary-fixed": "#07006c",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-fixed": "#001f26"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "base": "4px",
+                        "margin-mobile": "16px",
+                        "container-max": "1440px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Geist"],
+                        "label-md": ["JetBrains Mono"],
+                        "display-lg": ["Geist"],
+                        "body-md": ["Geist"],
+                        "headline-lg": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "code-sm": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "code-sm": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface/80 backdrop-blur-xl border-b border-outline-variant/20 shadow-sm sticky top-0 z-50 flex justify-between items-center w-full px-margin-desktop py-base">
+<div class="flex items-center gap-gutter">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">Devspace Mentor AI</span>
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="bg-surface-container-lowest border border-outline-variant/20 rounded-lg pl-10 pr-4 py-2 w-80 text-on-surface focus:outline-none focus:border-primary transition-all" placeholder="Search codebase..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant cursor-pointer active:scale-95 transition-transform">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant cursor-pointer active:scale-95 transition-transform">settings</button>
+<img alt="User profile avatar" class="w-8 h-8 rounded-full border border-outline-variant/20" data-alt="A professional close-up portrait of a developer in a modern, high-tech workspace. The lighting is moody and cinematic with cool blue and warm indigo highlights reflecting off a glass surface in the background. The aesthetic is clean and minimalist, consistent with a high-end software development environment using a dark charcoal and slate color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3d9_M92vg_fIkHM82xaROZptQVp4yikWyWPVx5Nh5yFWdgrFHZ9SKkBiQFVvmr90FHbMUd3bkHK7JrlWm3Nj4jIHaOj7XH8fDjmrl62s8aWP43OPgzpC64CopGnQjZQ57llpQYdzhi5Ud76pm9nS00m5eRM0TT-G3ZciYvz-SewYZT2s5BkHTlEO5L_ij7w-BYG6g4Ra_hORxRxernY9QPKXXDsngLB8z0ssAKCTJwQ2jJvzRsxYrVlt5-vqjJO46AqFd5FLo3MY"/>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- SideNavBar -->
+<aside class="bg-surface-container border-r border-outline-variant/20 flex flex-col h-full p-4 gap-base w-64 shrink-0 hidden md:flex">
+<div class="mb-8 px-2">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary">terminal</span>
+</div>
+<div>
+<h2 class="font-label-md text-label-md font-bold text-primary">Mentor AI</h2>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest">Technical Intelligence</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-variant rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-variant rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined">database</span>
+<span class="font-label-md text-label-md">Repositories</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-primary-container text-on-primary-container rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="font-label-md text-label-md">AI Chat</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-variant rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-label-md text-label-md">Learning Path</span>
+</a>
+</nav>
+<button class="mt-4 mb-8 bg-primary text-on-primary py-2.5 rounded-lg font-bold scale-100 active:scale-[0.98] transition-transform">
+                New Project
+            </button>
+<div class="border-t border-outline-variant/10 pt-4 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-variant rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-md text-label-md">Support</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-variant rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</div>
+</aside>
+<!-- Main Workspace Canvas -->
+<main class="flex-1 flex overflow-hidden">
+<!-- Left Side: Repository Context -->
+<section class="w-72 border-r border-outline-variant/20 bg-surface-container-low flex flex-col hidden lg:flex">
+<div class="p-6 border-b border-outline-variant/20">
+<h3 class="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-4">Repository Context</h3>
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[18px]">folder_open</span>
+<span class="font-code-sm text-code-sm truncate">frontend-core-service</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-6">
+<div>
+<p class="font-label-md text-[11px] text-on-surface-variant/60 uppercase mb-3">Active Files</p>
+<div class="space-y-2">
+<div class="flex items-center gap-2 p-2 rounded bg-surface-variant/30 border border-primary/20">
+<span class="material-symbols-outlined text-[16px] text-secondary">javascript</span>
+<span class="font-code-sm text-code-sm truncate">AuthHandler.ts</span>
+</div>
+<div class="flex items-center gap-2 p-2 rounded hover:bg-surface-variant/20 transition-colors">
+<span class="material-symbols-outlined text-[16px] text-primary">schema</span>
+<span class="font-code-sm text-code-sm truncate">UserSchema.prisma</span>
+</div>
+<div class="flex items-center gap-2 p-2 rounded hover:bg-surface-variant/20 transition-colors">
+<span class="material-symbols-outlined text-[16px] text-secondary">terminal</span>
+<span class="font-code-sm text-code-sm truncate">server.config.js</span>
+</div>
+</div>
+</div>
+<div>
+<p class="font-label-md text-[11px] text-on-surface-variant/60 uppercase mb-3">Recent Activity</p>
+<div class="space-y-4">
+<div class="flex gap-3">
+<div class="w-1 h-8 bg-outline-variant/20 rounded-full mt-1"></div>
+<div>
+<p class="text-[12px] text-on-surface">Refactored API hooks</p>
+<p class="text-[10px] text-on-surface-variant">2 hours ago</p>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="w-1 h-8 bg-outline-variant/20 rounded-full mt-1"></div>
+<div>
+<p class="text-[12px] text-on-surface">Added unit tests</p>
+<p class="text-[10px] text-on-surface-variant">Yesterday</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Center Area: Chat Interface -->
+<section class="flex-1 flex flex-col bg-background relative">
+<!-- Message Thread -->
+<div class="flex-1 overflow-y-auto p-gutter space-y-8 scroll-smooth">
+<!-- User Message -->
+<div class="flex justify-end max-w-4xl mx-auto w-full">
+<div class="bg-surface-container rounded-2xl p-4 border border-outline-variant/20 max-w-[80%]">
+<p class="font-body-md text-body-md text-on-surface">Can you explain the current implementation of the `validateSession` middleware and suggest a more secure way to handle JWT expiration?</p>
+</div>
+</div>
+<!-- AI Response -->
+<div class="flex gap-4 max-w-4xl mx-auto w-full">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary-container text-[20px]">auto_awesome</span>
+</div>
+<div class="flex-1 space-y-4">
+<div class="prose prose-invert max-w-none">
+<p class="text-body-md text-on-surface-variant leading-relaxed">
+                                    In your current <code class="bg-surface-variant px-1.5 py-0.5 rounded text-secondary font-code-sm">AuthHandler.ts</code>, the session validation is performed synchronously using a secret key. While functional, it lacks protection against token revocation and replay attacks.
+                                </p>
+</div>
+<!-- Code Block -->
+<div class="rounded-xl overflow-hidden border border-outline-variant/20 bg-surface-container-lowest font-code-sm">
+<div class="bg-surface-container px-4 py-2 border-b border-outline-variant/20 flex justify-between items-center">
+<span class="text-on-surface-variant text-[12px]">ImprovedAuthHandler.ts</span>
+<button class="flex items-center gap-1.5 text-primary text-[12px] hover:underline transition-all">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+                                        Copy Code
+                                    </button>
+</div>
+<div class="p-4 leading-relaxed overflow-x-auto">
+<pre class="text-[#f8f8f2]"><span class="text-secondary">async function</span> <span class="text-primary">validateSession</span>(token: string) {
+  <span class="text-on-surface-variant/40">// 1. Decode without verification to check exp</span>
+  <span class="text-secondary">const</span> decoded = <span class="text-primary">jwt</span>.decode(token);
+  
+  <span class="text-secondary">if</span> (decoded.exp &lt; <span class="text-primary">Date</span>.now() / <span class="text-tertiary">1000</span>) {
+    <span class="text-secondary">throw new</span> <span class="text-primary">AuthError</span>(<span class="text-tertiary">'TOKEN_EXPIRED'</span>);
+  }
+
+  <span class="text-on-surface-variant/40">// 2. Verify with key &amp; signature</span>
+  <span class="text-secondary">return await</span> <span class="text-primary">verifyAsync</span>(token, process.env.<span class="text-primary">JWT_SECRET</span>);
+}</pre>
+</div>
+</div>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-primary/10 border border-primary/20 rounded-full text-primary text-[12px] flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">info</span>
+                                    Suggested Refactor
+                                </span>
+<span class="px-3 py-1 bg-secondary/10 border border-secondary/20 rounded-full text-secondary text-[12px]">
+                                    Performance Optimized
+                                </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Input Area -->
+<div class="p-gutter border-t border-outline-variant/20 bg-surface/50 backdrop-blur-md">
+<div class="max-w-4xl mx-auto relative group">
+<div class="flex items-end gap-2 bg-surface-container border border-outline-variant/20 rounded-2xl p-2 focus-within:border-primary transition-all duration-300 shadow-lg">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">attach_file</span>
+</button>
+<textarea class="flex-1 bg-transparent border-none focus:ring-0 text-on-surface py-2 resize-none max-h-48 scrollbar-hide" placeholder="Ask Mentor AI about your code..." rows="1"></textarea>
+<button class="bg-primary text-on-primary p-2 rounded-xl active:scale-95 transition-transform">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+<!-- Lumina Indicator -->
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-surface-container-high/80 border border-secondary/30 px-4 py-1.5 rounded-full backdrop-blur-xl opacity-0 group-hover:opacity-100 transition-opacity">
+<div class="w-2 h-2 rounded-full bg-secondary animate-pulse"></div>
+<span class="text-[11px] font-label-md text-secondary">Ready to analyze codebase</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Sidebar: Suggested & Related -->
+<section class="w-80 border-l border-outline-variant/20 bg-surface-container-low p-6 hidden xl:flex flex-col gap-8">
+<div>
+<h3 class="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-4">Suggested Prompts</h3>
+<div class="space-y-3">
+<button class="w-full text-left p-3 rounded-xl border border-outline-variant/10 hover:border-primary/40 hover:bg-surface-variant/30 transition-all group">
+<p class="text-[13px] text-on-surface-variant group-hover:text-on-surface transition-colors">"Analyze potential race conditions in the payment worker..."</p>
+</button>
+<button class="w-full text-left p-3 rounded-xl border border-outline-variant/10 hover:border-primary/40 hover:bg-surface-variant/30 transition-all group">
+<p class="text-[13px] text-on-surface-variant group-hover:text-on-surface transition-colors">"How do I optimize the database indexing for the user table?"</p>
+</button>
+<button class="w-full text-left p-3 rounded-xl border border-outline-variant/10 hover:border-primary/40 hover:bg-surface-variant/30 transition-all group">
+<p class="text-[13px] text-on-surface-variant group-hover:text-on-surface transition-colors">"Generate a Dockerfile for this service..."</p>
+</button>
+</div>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface uppercase tracking-wider mb-4">Related Files</h3>
+<div class="space-y-4">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-lg object-cover border border-outline-variant/20" data-alt="A macro shot of a sleek, futuristic circuit board with glowing indigo and cyan pathways. The image has a soft focus on the edges and high sharp detail in the center, representing high-tech software architecture. The colors match a deep charcoal and vibrant indigo design system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWT-R2R_WJ9Xgua7mjOIygqoagF4bEFbeP9TATiArcPzLzm3r_aLCiqbqF4HK6IsT87e_1OFtIcdPVTXikNybA_IWtHmU9_MFzk9iitwK0xpmqTGVhDgN1COJEtI4AWBH7_Zdu4xxhtSwNSmhpNsNH0GXvInvH_KFpNpNk9TsCw7iuY08z_MAmc8ZiREt5UZ-fMf97B-qualgB8G-kVtEc6M8GoFjT_7oGakmcPpNbkif6Hd4kH0jvlGJ_U3BqZXtjwAGIDPlj-MU"/>
+<div>
+<p class="text-[12px] font-bold text-on-surface">SessionManager.ts</p>
+<p class="text-[10px] text-on-surface-variant">Linked dependency</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-lg object-cover border border-outline-variant/20" data-alt="A close-up of clean, perfectly formatted source code on a high-resolution screen. The syntax highlighting uses a palette of soft teals, purples, and oranges against a deep matte black background. The depth of field is shallow, creating a professional and focused developer atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuANZ-puCT8NJYfqK6YAv5790LgX6tZFyHQj8OJSWK2CwYSD7wlNk1xj58LLgeQ40pNjLtwFvr3ff6DqzSXEeSmwdxAryJOzqXjgVcjKU6W2C4_SPPRBUcifHd7kl8Xuccw5duTwzTuHV0sBuAUXXZmDZ_-TV9PraFhEO_gi6kh7Lk-mbwSocifuaYLGpf6NT6o_2OtKWLQeSrGZtgMkAA65QGs8qIzXuBTNXy2-IvZqxM307nRVfeV4pOvnj2biCL9PEE0N57O-sz0"/>
+<div>
+<p class="text-[12px] font-bold text-on-surface">ConfigProvider.go</p>
+<p class="text-[10px] text-on-surface-variant">External module</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-auto glass-panel p-4 rounded-xl">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<p class="text-[12px] font-bold text-on-surface">Power Tip</p>
+</div>
+<p class="text-[11px] text-on-surface-variant leading-normal">
+                        Highlight any block of code and press <kbd class="bg-surface-container-highest px-1 border border-outline-variant/30 rounded text-[10px]">Ctrl+K</kbd> to ask for a specific explanation or refactor.
+                    </p>
+</div>
+</section>
+</main>
+</div>
+<!-- Footer -->
+<footer class="bg-surface-container-low border-t border-outline-variant/10 flex justify-between items-center px-margin-desktop py-6 w-full mt-auto text-on-surface-variant/60 font-label-md text-label-md">
+<div class="flex items-center gap-gutter">
+<span class="font-bold text-on-surface">© 2024 Devspace Mentor AI</span>
+<div class="flex gap-4">
+<a class="hover:text-secondary transition-colors underline-offset-4 hover:underline" href="#">Documentation</a>
+<a class="hover:text-secondary transition-colors underline-offset-4 hover:underline" href="#">Privacy Policy</a>
+<a class="hover:text-secondary transition-colors underline-offset-4 hover:underline" href="#">Terms of Service</a>
+<a class="hover:text-secondary transition-colors underline-offset-4 hover:underline" href="#">Status</a>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<span>All systems operational</span>
+</div>
+</footer>
+</body></html>
