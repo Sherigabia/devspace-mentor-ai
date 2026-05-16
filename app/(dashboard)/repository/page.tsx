@@ -4,14 +4,15 @@ import { useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
 import { Loader2, AlertCircle, RefreshCw } from "lucide-react";
 import { RepositoryPicker } from "@/components/repository/RepositoryPicker";
-import { RepositoryHeader } from "@/components/repository/RepositoryHeader";
-import { AIInsightCard } from "@/components/repository/AIInsightCard";
-import { TechStackList } from "@/components/repository/TechStackList";
-import { InsightsPanel } from "@/components/repository/InsightsPanel";
-import { ContributionSuggestions } from "@/components/repository/ContributionSuggestions";
-import { AnalysisTimeline } from "@/components/repository/AnalysisTimeline";
-import { QuickActionsPanel } from "@/components/repository/QuickActionsPanel";
+import { AnalysisHeader } from "@/components/repository/AnalysisHeader";
+import { AnalysisSummary } from "@/components/repository/AnalysisSummary";
+import { TechStackCards } from "@/components/repository/TechStackCards";
+import { FolderIntelligence } from "@/components/repository/FolderIntelligence";
+import { ImportantFiles } from "@/components/repository/ImportantFiles";
+import { ArchitectureInsights } from "@/components/repository/ArchitectureInsights";
+import { ContributionGuide } from "@/components/repository/ContributionGuide";
 import { useRepositoryStore } from "@/store/repository.store";
+import { MOCK_ANALYSIS_DATA } from "@/constants/mock-data";
 
 /**
  * Repository Analysis Page
@@ -47,25 +48,11 @@ export default function RepositoryPage() {
       setAnalysisStatus("analyzing");
       setAnalysisError(null);
 
-      const response = await fetch("/api/ai/analyze-repository", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          repoFullName,
-          forceRefresh: false,
-        }),
-      });
+      // Simulate AI analysis delay
+      await new Promise((resolve) => setTimeout(resolve, 2000));
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Analysis failed");
-      }
-
-      const data = await response.json();
-      
-      setAnalysisResult(data.analysis);
+      // Use mock data instead of calling the real API
+      setAnalysisResult(MOCK_ANALYSIS_DATA);
       setAnalysisStatus("completed");
     } catch (error) {
       console.error("Analysis error:", error);
@@ -200,114 +187,49 @@ export default function RepositoryPage() {
 
   // Success - show analysis results
   if (analysisStatus === "completed" && analysisResult) {
-    const {
-      summary,
-      techStack,
-      modules,
-      entryPoints,
-      complexity,
-      developerOnboarding,
-      suggestedFirstIssues,
-      learningPath,
-    } = analysisResult;
-
-    // Convert to display format
-    const displayTechStack = techStack.map((tech) => ({
-      id: tech.name,
-      name: tech.name,
-      category: tech.category as "framework" | "language" | "styling" | "database" | "tool",
-      description: tech.purpose,
-      color: "blue",
-    }));
-
-    const displayInsights = [
-      {
-        id: "complexity",
-        title: "Project Complexity",
-        description: `This project has ${complexity} complexity level`,
-        type: "architecture" as const,
-        priority: complexity === "high" ? "high" as const : "medium" as const,
-        icon: "layers",
-      },
-      {
-        id: "onboarding",
-        title: "Developer Onboarding",
-        description: developerOnboarding.substring(0, 150) + "...",
-        type: "architecture" as const,
-        priority: "high" as const,
-        icon: "book-open",
-      },
-    ];
-
-    const displayContributions = suggestedFirstIssues.map((issue, index) => ({
-      id: `issue-${index}`,
-      title: issue.title,
-      description: issue.description,
-      difficulty: issue.difficulty as "beginner" | "intermediate" | "advanced",
-      estimatedTime: issue.estimatedTime,
-      files: issue.files,
-    }));
-
-    const displaySteps = [
-      { id: "1", label: "Repository fetched", status: "completed" as const, timestamp: new Date().toISOString() },
-      { id: "2", label: "Context built", status: "completed" as const, timestamp: new Date().toISOString() },
-      { id: "3", label: "AI analysis completed", status: "completed" as const, timestamp: new Date().toISOString() },
-      { id: "4", label: "Results cached", status: "completed" as const, timestamp: new Date().toISOString() },
-    ];
+    const data = analysisResult as typeof MOCK_ANALYSIS_DATA;
 
     return (
-      <div className="space-y-8">
-        {/* Repository Header */}
-        <div className="flex items-center justify-between">
-          <RepositoryHeader
-            repository={{
-              id: selectedRepository.id.toString(),
-              name: selectedRepository.name,
-              fullName: selectedRepository.full_name,
-              description: selectedRepository.description || "",
-              version: "1.0.0",
-              language: selectedRepository.language || "Unknown",
-              lastUpdated: selectedRepository.updated_at,
-              stars: selectedRepository.stargazers_count,
-              forks: selectedRepository.forks_count,
-            }}
-          />
-          <button
-            onClick={handleForceRefresh}
-            className="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-200 rounded-lg font-medium transition-colors flex items-center gap-2"
-          >
-            <RefreshCw className="w-4 h-4" />
-            Refresh Analysis
-          </button>
-        </div>
+      <div className="max-w-[1440px] mx-auto space-y-12 pb-20">
+        {/* 1. Repository Header */}
+        <AnalysisHeader 
+          repoName={selectedRepository.name}
+          visibility={selectedRepository.private ? "private" : "public"}
+          lastAnalyzed="Just now"
+          healthScore={data.healthScore}
+          topTech={data.topTech}
+          onBack={() => {
+            resetAnalysis();
+            useRepositoryStore.getState().selectRepository(null);
+          }}
+          onRefresh={handleForceRefresh}
+        />
 
-        {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          <div className="lg:col-span-5 space-y-6">
-            <AIInsightCard
-              summary={summary}
-              metrics={[
-                { label: "Complexity", value: complexity, color: "blue" },
-                { label: "Tech Stack", value: techStack.length, color: "green" },
-                { label: "Modules", value: modules.length, color: "purple" },
-                { label: "Entry Points", value: entryPoints.length, color: "orange" },
-              ]}
-            />
-            <TechStackList techStack={displayTechStack} />
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          {/* Left Column: Summary and Tech Stack */}
+          <div className="lg:col-span-8 space-y-12">
+            {/* 2. AI Summary Card */}
+            <AnalysisSummary summary={data.summary} />
+            
+            {/* 3. Tech Stack Detection */}
+            <TechStackCards technologies={data.technologies} />
+            
+            {/* 4. Folder Structure Intelligence */}
+            <FolderIntelligence folders={data.folders} />
           </div>
 
-          <div className="lg:col-span-7 space-y-6">
-            <InsightsPanel insights={displayInsights} />
+          {/* Right Column: Insights and Files */}
+          <div className="lg:col-span-4 space-y-12">
+            {/* 6. Architecture Insights */}
+            <ArchitectureInsights insights={data.insights} />
+            
+            {/* 5. Important Files */}
+            <ImportantFiles files={data.importantFiles} />
           </div>
         </div>
 
-        {/* Bottom Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <ContributionSuggestions contributions={displayContributions} />
-          <AnalysisTimeline steps={displaySteps} />
-        </div>
-
-        <QuickActionsPanel />
+        {/* 7. Contribution Suggestions */}
+        <ContributionGuide suggestions={data.suggestions} />
       </div>
     );
   }

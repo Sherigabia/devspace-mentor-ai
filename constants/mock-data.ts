@@ -1,265 +1,90 @@
-import {
-  Repository,
-  TechStackItem,
-  FileNode,
-  AIInsight,
-  ArchitecturePattern,
-  ContributionSuggestion,
-  AnalysisMetric,
-  AnalysisStep,
-  RepositoryAnalysis,
-} from "@/types/repository";
-
-/**
- * Mock Repository Data
- * Sample data for repository analysis UI
- */
-
-export const mockRepository: Repository = {
-  id: "1",
-  name: "next-dashboard-template",
-  fullName: "vercel/next-dashboard-template",
-  description:
-    "A professional-grade, accessible dashboard starter kit optimized for enterprise workflows and data-heavy applications.",
-  version: "v2.4.0-stable",
-  language: "TypeScript",
-  lastUpdated: "2024-01-15",
-  stars: 1247,
-  forks: 342,
+export const MOCK_ANALYSIS_DATA = {
+  name: "devspace-mentor-ai",
+  visibility: "public" as const,
+  lastAnalyzed: "2 minutes ago",
+  healthScore: 94,
+  topTech: ["Next.js", "TypeScript", "Tailwind CSS"],
+  summary: "Devspace Mentor AI is a sophisticated AI-powered developer productivity platform built on a modern Next.js 15 stack. The codebase follows a clean architecture pattern with clear separation of concerns between UI components, business logic services, and external integrations. It leverages shadcn/ui for a premium design system and IBM Watsonx for its core AI capabilities, providing a robust foundation for repository analysis and developer onboarding.",
+  technologies: [
+    { name: "Next.js", confidence: 100, category: "Framework", summary: "Used as the core application framework with App Router for server-side rendering and API routes." },
+    { name: "TypeScript", confidence: 100, category: "Language", summary: "Provides type safety across the entire codebase, ensuring robust data structures and fewer runtime errors." },
+    { name: "Tailwind CSS", confidence: 98, category: "Styling", summary: "Utilized for all visual styling, enabling a highly customized and responsive design system." },
+    { name: "Clerk", confidence: 95, category: "Authentication", summary: "Handles user authentication, session management, and secure access to dashboard features." },
+    { name: "Prisma", confidence: 92, category: "ORM", summary: "Acts as the database toolkit for PostgreSQL, providing typed database access and migration management." },
+    { name: "Supabase", confidence: 90, category: "Database", summary: "Used as the primary cloud database and storage solution for repository metadata and analysis results." }
+  ],
+  folders: [
+    { 
+      name: "app", 
+      purpose: "Routing and Page Layouts", 
+      complexity: "medium" as const, 
+      insight: "Contains the main application routes. Uses Next.js App Router conventions with clear logical grouping of dashboard features.",
+      aiInsight: "This folder follows the Next.js App Router architecture, leveraging Server Components for performance and Route Groups for logical organization.",
+      patterns: ["App Router", "Route Groups", "Server Components", "Layout Composition"],
+      onboardingNotes: "Focus on understanding the folder-based routing and how layouts wrap page content. This is the entry point for most feature development.",
+      learningTopics: ["Next.js App Router", "Server vs Client Components", "Nested Layouts"],
+      relatedInsights: ["Route protection middleware handles auth", "Global state is injected at the root layout"]
+    },
+    { 
+      name: "components", 
+      purpose: "Reusable UI Library", 
+      complexity: "low" as const, 
+      insight: "Well-organized component library following atomic design principles. High reuse potential and consistent styling.",
+      aiInsight: "This folder follows a reusable UI composition pattern using shadcn/ui primitives and feature-based abstractions.",
+      patterns: ["Atomic Design", "Shared Typography", "Card Abstractions", "Glassmorphism UI"],
+      onboardingNotes: "This folder is beginner-friendly and suitable for onboarding junior frontend developers. Start by exploring the 'ui' and 'landing' subfolders.",
+      learningTopics: ["React Component Composition", "Tailwind Utility Patterns", "Reusable Design Systems"],
+      relatedInsights: ["Styles are centralized in globals.css", "Iconography uses Lucide-react"]
+    },
+    { 
+      name: "hooks", 
+      purpose: "Custom React Logic", 
+      complexity: "medium" as const, 
+      insight: "Encapsulates complex state management and side effects, making components cleaner and easier to test.",
+      aiInsight: "The hooks layer abstracts complex state machines and external data fetching, providing a clean API for UI components.",
+      patterns: ["Custom Hook Pattern", "State Abstraction", "Side-effect Encapsulation"],
+      onboardingNotes: "Study the useRepositoryStore hook first to understand how the global application state is managed.",
+      learningTopics: ["React Hook Rules", "Custom State Management", "Zustand Integration"],
+      relatedInsights: ["Hooks are tightly integrated with Zustand", "Data fetching logic is isolated from UI"]
+    },
+    { 
+      name: "lib", 
+      purpose: "External Integrations", 
+      complexity: "medium" as const, 
+      insight: "Core utilities and SDK initializations for Watsonx, Supabase, and other third-party services.",
+      aiInsight: "Lib serves as the bridge between the application and external services, ensuring consistent initialization and error handling.",
+      patterns: ["Singleton SDKs", "Utility Helpers", "Centralized Config"],
+      onboardingNotes: "This folder contains sensitive initialization logic. Be careful when modifying SDK configurations for Watsonx or Supabase.",
+      learningTopics: ["SDK Integration Patterns", "Utility Function Design", "Environment Configuration"],
+      relatedInsights: ["Supabase client is initialized here", "Watsonx AI logic is centralized"]
+    },
+    { 
+      name: "services", 
+      purpose: "Business Logic Layer", 
+      complexity: "high" as const, 
+      insight: "The 'brain' of the application. Handles complex data transformations and AI processing flows.",
+      aiInsight: "The services layer is the heart of the business logic, processing raw repository data into intelligent AI-driven insights.",
+      patterns: ["Service Object Pattern", "AI Response Parsing", "Data Transformation"],
+      onboardingNotes: "This is the most complex part of the codebase. It handles the heavy lifting of repository analysis and AI interactions.",
+      learningTopics: ["Business Logic Separation", "AI Orchestration", "Async Data Pipelines"],
+      relatedInsights: ["Repository analysis logic resides here", "Documentation generation is handled by specialized services"]
+    }
+  ],
+  importantFiles: [
+    { name: "next.config.ts", role: "Build Configuration", explanation: "Defines the build environment, API rewrites, and performance optimizations for the Next.js platform." },
+    { name: "middleware.ts", role: "Request Interceptor", explanation: "Handles edge-level authentication checks and route protection before requests reach the server components." },
+    { name: "AGENTS.md", role: "Development Standards", explanation: "A critical file defining the AI coding standards and development philosophy for the entire project team." },
+    { name: "lib/watsonx.ts", role: "AI Core", explanation: "The primary integration point for IBM Watsonx AI services, managing prompt templates and response parsing." }
+  ],
+  insights: [
+    { title: "Modular Architecture", category: "organization" as const, description: "The codebase is highly modular with a clear 'services' layer that abstracts business logic from UI components." },
+    { title: "High Scalability Potential", category: "scalability" as const, description: "Use of server actions and optimized API routes allows for handling increased load without significant structural changes." },
+    { title: "Onboarding Score: Excellent", category: "onboarding" as const, description: "Comprehensive documentation and consistent naming conventions make this a great codebase for junior developers to learn from." },
+    { title: "Maintained by Standards", category: "maintainability" as const, description: "Strict TypeScript enforcement and automated linting ensure a high standard of code quality over time." }
+  ],
+  suggestions: [
+    { title: "Add Unit Tests for Services", type: "Improvement", description: "The services layer currently lacks comprehensive unit tests. Adding tests for the AI parsing logic would increase reliability.", difficulty: "intermediate" as const, estimatedTime: "4 hours" },
+    { title: "Extract Dashboard Layout", type: "Refactoring", description: "Some logic in the dashboard shell could be extracted into smaller, more reusable presentational components.", difficulty: "beginner" as const, estimatedTime: "2 hours" },
+    { title: "Update README Examples", type: "Documentation", description: "The current README is good but could benefit from more detailed code examples for the new analysis features.", difficulty: "beginner" as const, estimatedTime: "1 hour" }
+  ]
 };
-
-export const mockTechStack: TechStackItem[] = [
-  {
-    id: "1",
-    name: "Next.js 14",
-    category: "framework",
-    description: "App Router, SSR, RSC",
-    color: "#000000",
-  },
-  {
-    id: "2",
-    name: "TypeScript",
-    category: "language",
-    description: "End-to-end typing",
-    color: "#3178c6",
-  },
-  {
-    id: "3",
-    name: "Tailwind CSS",
-    category: "styling",
-    description: "Utility-first styling",
-    color: "#38bdf8",
-  },
-  {
-    id: "4",
-    name: "Supabase",
-    category: "database",
-    description: "Auth & Postgres DB",
-    color: "#3ecf8e",
-  },
-  {
-    id: "5",
-    name: "Zustand",
-    category: "tool",
-    description: "State management",
-    color: "#c0c1ff",
-  },
-];
-
-export const mockFileStructure: FileNode[] = [
-  {
-    name: "app",
-    type: "folder",
-    path: "/app",
-    children: [
-      {
-        name: "(dashboard)",
-        type: "folder",
-        path: "/app/(dashboard)",
-        children: [
-          {
-            name: "layout.tsx",
-            type: "file",
-            path: "/app/(dashboard)/layout.tsx",
-          },
-          {
-            name: "page.tsx",
-            type: "file",
-            path: "/app/(dashboard)/page.tsx",
-          },
-        ],
-      },
-      {
-        name: "api",
-        type: "folder",
-        path: "/app/api",
-        children: [
-          {
-            name: "auth",
-            type: "folder",
-            path: "/app/api/auth",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    name: "components",
-    type: "folder",
-    path: "/components",
-    children: [
-      {
-        name: "ui",
-        type: "folder",
-        path: "/components/ui",
-      },
-    ],
-  },
-  {
-    name: "lib",
-    type: "folder",
-    path: "/lib",
-  },
-  {
-    name: "tailwind.config.ts",
-    type: "file",
-    path: "/tailwind.config.ts",
-  },
-];
-
-export const mockAISummary = `This project uses a modular architecture with a focus on server-side rendering. I've detected a highly optimized data-fetching pattern using Next.js Server Components, which reduces client-side JS by 40%. The directory structure follows the 'Atomic Design' principle, ensuring UI consistency across the dashboard.`;
-
-export const mockInsights: AIInsight[] = [
-  {
-    id: "1",
-    title: "Optimization Opportunity",
-    description:
-      "The AI noticed 3 repeated patterns in your `/components/ui` folder. Migrating these to a single generic component could reduce maintenance debt by 15%.",
-    type: "optimization",
-    priority: "medium",
-    icon: "lightbulb",
-  },
-  {
-    id: "2",
-    title: "Security Audit",
-    description:
-      "All Supabase environment variables are properly masked. RLS (Row Level Security) is active on 12/12 database tables. No critical vulnerabilities found.",
-    type: "security",
-    priority: "low",
-    icon: "security",
-  },
-  {
-    id: "3",
-    title: "Build Efficiency",
-    description:
-      "Caching is currently under-utilized for static assets. Enabling `next/image` optimization for external avatars could improve LCP by ~200ms.",
-    type: "performance",
-    priority: "medium",
-    icon: "speed",
-  },
-];
-
-export const mockArchitecturePatterns: ArchitecturePattern[] = [
-  {
-    name: "Server Components",
-    description: "Next.js App Router with React Server Components",
-    detected: true,
-  },
-  {
-    name: "Atomic Design",
-    description: "Component structure follows atomic design principles",
-    detected: true,
-  },
-  {
-    name: "Edge Optimized",
-    description: "Optimized for edge runtime deployment",
-    detected: true,
-  },
-];
-
-export const mockContributions: ContributionSuggestion[] = [
-  {
-    id: "1",
-    title: "Add dark mode toggle",
-    description:
-      "Implement a theme switcher component in the navigation bar",
-    difficulty: "beginner",
-    estimatedTime: "2-3 hours",
-    files: ["components/layout/TopNavbar.tsx", "app/globals.css"],
-  },
-  {
-    id: "2",
-    title: "Improve error handling",
-    description: "Add error boundaries to main dashboard components",
-    difficulty: "intermediate",
-    estimatedTime: "4-5 hours",
-    files: ["app/(dashboard)/layout.tsx", "components/ErrorBoundary.tsx"],
-  },
-  {
-    id: "3",
-    title: "Add unit tests",
-    description: "Write tests for utility functions in lib folder",
-    difficulty: "beginner",
-    estimatedTime: "3-4 hours",
-    files: ["lib/utils.ts", "__tests__/utils.test.ts"],
-  },
-];
-
-export const mockMetrics: AnalysisMetric[] = [
-  {
-    label: "Performance Score",
-    value: "98/100",
-    color: "#4cd7f6",
-  },
-  {
-    label: "Type Safety",
-    value: "100% TS",
-    color: "#c0c1ff",
-  },
-  {
-    label: "Bundle Size",
-    value: "142 KB",
-    color: "#ffb783",
-  },
-];
-
-export const mockAnalysisSteps: AnalysisStep[] = [
-  {
-    id: "1",
-    label: "Scanning repository structure",
-    status: "completed",
-    timestamp: "2024-01-15T10:00:00Z",
-  },
-  {
-    id: "2",
-    label: "Analyzing dependencies",
-    status: "completed",
-    timestamp: "2024-01-15T10:00:15Z",
-  },
-  {
-    id: "3",
-    label: "Detecting architecture patterns",
-    status: "completed",
-    timestamp: "2024-01-15T10:00:30Z",
-  },
-  {
-    id: "4",
-    label: "Generating AI insights",
-    status: "completed",
-    timestamp: "2024-01-15T10:00:45Z",
-  },
-];
-
-export const mockRepositoryAnalysis: RepositoryAnalysis = {
-  repository: mockRepository,
-  techStack: mockTechStack,
-  fileStructure: mockFileStructure,
-  aiSummary: mockAISummary,
-  insights: mockInsights,
-  architecturePatterns: mockArchitecturePatterns,
-  contributions: mockContributions,
-  metrics: mockMetrics,
-  analysisSteps: mockAnalysisSteps,
-};
-
-// Made with Bob
