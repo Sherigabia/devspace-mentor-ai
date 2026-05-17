@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
+import { useUser } from "@clerk/nextjs";
 import { navigationItems } from "@/constants/navigation";
 import { cn } from "@/lib/utils";
 
@@ -20,6 +21,7 @@ export function Sidebar({
   onMobileClose,
 }: SidebarProps) {
   const pathname = usePathname();
+  const { user, isLoaded } = useUser();
 
   return (
     <>
@@ -121,27 +123,54 @@ export function Sidebar({
 
         {/* User Profile Section */}
         <div className="border-t border-[#262626] p-3">
-          <button
-            className={cn(
-              "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-[#908fa0] hover:text-[#e5e2e3] hover:bg-[#262626] transition-all group",
-              isCollapsed && "justify-center"
-            )}
-            aria-label="User profile"
-          >
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#4cd7f6] to-[#6366f1] flex items-center justify-center flex-shrink-0 text-[#0a0a0b] font-semibold text-xs">
-              DV
+          {isLoaded && user ? (
+            <Link
+              href="/settings"
+              onClick={onMobileClose}
+              className={cn(
+                "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-[#908fa0] hover:text-[#e5e2e3] hover:bg-[#262626] transition-all group",
+                isCollapsed && "justify-center"
+              )}
+              aria-label="User profile"
+            >
+              {user.imageUrl ? (
+                <img
+                  src={user.imageUrl}
+                  alt={user.fullName || user.username || "User"}
+                  className="w-8 h-8 rounded-full object-cover flex-shrink-0"
+                />
+              ) : (
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#4cd7f6] to-[#6366f1] flex items-center justify-center flex-shrink-0 text-[#0a0a0b] font-semibold text-xs">
+                  {(user.firstName || user.username || "D").substring(0, 2).toUpperCase()}
+                </div>
+              )}
+              {!isCollapsed && (
+                <div className="flex-1 text-left truncate">
+                  <p className="text-[#e5e2e3] font-medium text-sm truncate group-hover:text-[#c0c1ff] transition-colors">
+                    {user.fullName || user.username || "Developer"}
+                  </p>
+                  <p className="text-[#908fa0] text-xs truncate">
+                    {user.primaryEmailAddress?.emailAddress || "dev@example.com"}
+                  </p>
+                </div>
+              )}
+            </Link>
+          ) : (
+            <div
+              className={cn(
+                "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all",
+                isCollapsed && "justify-center"
+              )}
+            >
+              <div className="w-8 h-8 rounded-full bg-[#262626] animate-pulse flex-shrink-0" />
+              {!isCollapsed && (
+                <div className="flex-1 space-y-2">
+                  <div className="h-4 bg-[#262626] rounded animate-pulse w-3/4" />
+                  <div className="h-3 bg-[#262626] rounded animate-pulse w-1/2" />
+                </div>
+              )}
             </div>
-            {!isCollapsed && (
-              <div className="flex-1 text-left truncate">
-                <p className="text-[#e5e2e3] font-medium text-sm truncate">
-                  Developer
-                </p>
-                <p className="text-[#908fa0] text-xs truncate">
-                  dev@example.com
-                </p>
-              </div>
-            )}
-          </button>
+          )}
         </div>
       </aside>
     </>

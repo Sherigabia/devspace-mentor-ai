@@ -1,39 +1,95 @@
 "use client";
 
+import { useState } from "react";
 import { TrendingUp, Award, Brain } from "lucide-react";
 import { LearningPathStep } from "@/components/learning/LearningPathStep";
+import { InteractiveLearningModal, LearningModule } from "@/components/learning/InteractiveLearningModal";
+
+const INITIAL_STEPS = [
+  {
+    id: "step-1",
+    title: "Foundations of Neural Networks",
+    description: "Core understanding of perceptrons, backpropagation, and activation functions.",
+    status: "completed" as const,
+  },
+  {
+    id: "step-2",
+    title: "Transformers & LLM Architecture",
+    description: "Deep dive into Attention mechanisms, Positional Encoding, and BERT/GPT architectures.",
+    status: "current" as const,
+    progress: 65,
+    aiSuggestion: "Focus on multi-head attention labs.",
+  },
+  {
+    id: "step-3",
+    title: "Reinforcement Learning from Human Feedback (RLHF)",
+    description: "Advanced alignment techniques, reward modeling, and proximal policy optimization for robust AI systems.",
+    status: "locked" as const,
+  },
+  {
+    id: "step-4",
+    title: "System Design for Scalable AI Products",
+    description: "Optimizing inference, vector database architecture, and building production-ready agentic workflows.",
+    status: "locked" as const,
+  },
+];
+
+const MOCK_MODULE_CONTENT: Record<string, LearningModule> = {
+  "step-2": {
+    id: "step-2",
+    title: "Transformers & LLM Architecture",
+    lessonContent: "The Transformer architecture, introduced in the paper 'Attention Is All You Need' (2017), revolutionized Natural Language Processing.\n\nUnlike traditional Recurrent Neural Networks (RNNs) that process data sequentially, Transformers use a mechanism called 'Self-Attention'. This allows the model to look at all words in a sentence simultaneously and determine which words are most relevant to each other, regardless of their distance.\n\nAnother key component is 'Positional Encoding'. Since Transformers process tokens in parallel, they have no inherent understanding of word order. Positional encodings are injected into the input embeddings to provide a mathematical representation of the token's position in the sequence.",
+    quiz: {
+      question: "Why does the Transformer architecture require Positional Encoding?",
+      options: [
+        "To reduce the overall parameter count of the model.",
+        "Because it processes sequences in parallel and lacks an inherent sense of word order.",
+        "To convert words into numerical vectors.",
+        "To increase the learning rate during the fine-tuning phase."
+      ],
+      correctAnswer: 1,
+      explanation: "Since Transformers process all tokens simultaneously (in parallel) via self-attention, they lose the sequential information that RNNs naturally capture. Positional encoding adds context about a word's position in the sequence."
+    }
+  }
+};
 
 export default function LearningPage() {
-  const learningSteps = [
-    {
-      title: "Foundations of Neural Networks",
-      description:
-        "Core understanding of perceptrons, backpropagation, and activation functions. Mastering the mathematical foundations of deep learning architectures.",
-      status: "completed" as const,
-    },
-    {
-      title: "Transformers & LLM Architecture",
-      description:
-        "Deep dive into Attention mechanisms, Positional Encoding, and BERT/GPT architectures. Currently exploring fine-tuning strategies for domain-specific tasks.",
-      status: "current" as const,
-      progress: 65,
-      aiSuggestion: "Focus on multi-head attention labs.",
-      onResume: () => console.log("Resume learning"),
-    },
-    {
-      title: "Reinforcement Learning from Human Feedback (RLHF)",
-      description:
-        "Advanced alignment techniques, reward modeling, and proximal policy optimization for robust AI systems.",
-      status: "locked" as const,
-    },
-    {
-      title: "System Design for Scalable AI Products",
-      description:
-        "Optimizing inference, vector database architecture, and building production-ready agentic workflows.",
-      status: "locked" as const,
-    },
-  ];
+  const [learningSteps, setLearningSteps] = useState(INITIAL_STEPS);
+  const [selectedModule, setSelectedModule] = useState<LearningModule | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [overallProgress, setOverallProgress] = useState(65);
 
+  const handleResume = (stepId: string) => {
+    const moduleContent = MOCK_MODULE_CONTENT[stepId];
+    if (moduleContent) {
+      setSelectedModule(moduleContent);
+      setIsModalOpen(true);
+    }
+  };
+
+  const handleCompleteModule = (moduleId: string) => {
+    setLearningSteps(prev => {
+      const newSteps = [...prev];
+      const currentIndex = newSteps.findIndex(s => s.id === moduleId);
+      
+      if (currentIndex !== -1) {
+        // Mark current as completed
+        newSteps[currentIndex] = { ...newSteps[currentIndex], status: "completed", progress: undefined, aiSuggestion: undefined };
+        
+        // Unlock next
+        if (currentIndex + 1 < newSteps.length) {
+          newSteps[currentIndex + 1] = { 
+            ...newSteps[currentIndex + 1], 
+            status: "current", 
+            progress: 0,
+            aiSuggestion: "New module unlocked! Let's start with the basics."
+          };
+        }
+      }
+      return newSteps;
+    });
+    setOverallProgress(100); // Just a visual mock update
+  };
   const skills = [
     { name: "Python / PyTorch", progress: 88, color: "primary" },
     { name: "Neural Architectures", progress: 74, color: "primary" },
@@ -100,7 +156,7 @@ export default function LearningPage() {
         </div>
         <div className="flex items-center gap-2 px-4 py-2 bg-[#201f20] border border-[#262626] rounded-lg">
           <div className="w-2 h-2 rounded-full bg-[#4cd7f6] animate-pulse" />
-          <span className="text-sm text-gray-300">65% Complete</span>
+          <span className="text-sm text-gray-300">{overallProgress}% Complete</span>
         </div>
       </div>
 
@@ -113,7 +169,11 @@ export default function LearningPage() {
             <div className="absolute left-[64px] top-10 bottom-10 w-0.5 bg-gradient-to-b from-[#c0c1ff]/30 via-[#4cd7f6]/30 to-transparent" />
 
             {learningSteps.map((step, index) => (
-              <LearningPathStep key={index} {...step} />
+              <LearningPathStep 
+                key={step.id} 
+                {...step} 
+                onResume={step.status === "current" ? () => handleResume(step.id) : undefined}
+              />
             ))}
           </div>
         </section>
@@ -217,6 +277,14 @@ export default function LearningPage() {
           ))}
         </div>
       </section>
+
+      {/* Interactive Module Modal */}
+      <InteractiveLearningModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        module={selectedModule}
+        onComplete={handleCompleteModule}
+      />
     </div>
   );
 }

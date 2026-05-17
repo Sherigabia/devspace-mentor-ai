@@ -83,8 +83,111 @@ export const MOCK_ANALYSIS_DATA = {
     { title: "Maintained by Standards", category: "maintainability" as const, description: "Strict TypeScript enforcement and automated linting ensure a high standard of code quality over time." }
   ],
   suggestions: [
-    { title: "Add Unit Tests for Services", type: "Improvement", description: "The services layer currently lacks comprehensive unit tests. Adding tests for the AI parsing logic would increase reliability.", difficulty: "intermediate" as const, estimatedTime: "4 hours" },
-    { title: "Extract Dashboard Layout", type: "Refactoring", description: "Some logic in the dashboard shell could be extracted into smaller, more reusable presentational components.", difficulty: "beginner" as const, estimatedTime: "2 hours" },
-    { title: "Update README Examples", type: "Documentation", description: "The current README is good but could benefit from more detailed code examples for the new analysis features.", difficulty: "beginner" as const, estimatedTime: "1 hour" }
+    { 
+      id: "task-1",
+      title: "Add Unit Tests for Services", 
+      type: "Improvement", 
+      description: "The services layer currently lacks comprehensive unit tests. Adding tests for the AI parsing logic would increase reliability.", 
+      difficulty: "intermediate" as const, 
+      estimatedTime: "4 hours",
+      whyItMatters: "Testing the AI parsing logic ensures that changes to the prompt structure don't break the application's ability to interpret Watsonx responses correctly.",
+      skills: ["Vitest basics", "Mocking async functions", "TypeScript testing patterns"],
+      files: ["services/repository.service.ts", "lib/watsonx.ts"],
+      aiNotes: "Start by testing isolated utility functions before moving into the complex AI response parsing. Mock the Watsonx API calls so tests run quickly without hitting the live service.",
+      checklist: [
+        "Set up Vitest test environment",
+        "Create repository.service.test.ts",
+        "Mock the Watsonx generation function",
+        "Write tests for successful parsing",
+        "Write tests for error handling"
+      ],
+      learningTopics: ["Testing Asynchronous Code", "Dependency Injection for Testing", "Test-Driven Development (TDD)"],
+      initialCode: `import { describe, it, expect, vi } from 'vitest';
+import { parseAIResponse } from './repository.service';
+
+describe('AI Response Parser', () => {
+  it('should correctly parse valid JSON responses', () => {
+    // Add your test implementation here
+    
+  });
+});`
+    },
+    { 
+      id: "task-2",
+      title: "Extract Dashboard Layout", 
+      type: "Refactoring", 
+      description: "Some logic in the dashboard shell could be extracted into smaller, more reusable presentational components.", 
+      difficulty: "beginner" as const, 
+      estimatedTime: "2 hours",
+      whyItMatters: "A cleaner dashboard layout component will make it easier to add new sidebar items and top navigation features in the future.",
+      skills: ["React Component Composition", "Tailwind flexbox layouts", "React Props passing"],
+      files: ["components/layout/AppShell.tsx", "app/(dashboard)/layout.tsx"],
+      aiNotes: "Look for repeating structural elements like navigation containers or header wrappers. Move them into their own files inside components/layout/ to clean up the main shell component.",
+      checklist: [
+        "Identify large UI blocks in AppShell",
+        "Create new wrapper components (e.g., MainContent.tsx)",
+        "Pass necessary state via props",
+        "Verify responsive behavior still works"
+      ],
+      learningTopics: ["React Code Splitting", "Separation of Concerns", "Prop Drilling vs Context"],
+      initialCode: `export function AppShell({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex h-screen bg-[#0a0a0b]">
+      {/* Extract this Sidebar into a separate component */}
+      <aside className="w-64 border-r border-[#262626] p-4 hidden md:block">
+        <nav className="space-y-2">
+          {/* Navigation items */}
+        </nav>
+      </aside>
+      
+      <main className="flex-1 flex flex-col overflow-hidden">
+        {/* Extract Header */}
+        <header className="h-16 border-b border-[#262626] flex items-center px-6">
+           <h1>Dashboard</h1>
+        </header>
+        
+        <div className="flex-1 overflow-y-auto p-6">
+          {children}
+        </div>
+      </main>
+    </div>
+  );
+}`
+    },
+    { 
+      id: "task-3",
+      title: "Update README Examples", 
+      type: "Documentation", 
+      description: "The current README is good but could benefit from more detailed code examples for the new analysis features.", 
+      difficulty: "beginner" as const, 
+      estimatedTime: "1 hour",
+      whyItMatters: "Clear documentation is critical for open-source adoption. The new analysis features are powerful but not yet obvious to new users.",
+      skills: ["Markdown formatting", "Technical Writing", "Understanding of new features"],
+      files: ["README.md", "docs/analysis-api.md"],
+      aiNotes: "Don't just describe the features; provide copy-pasteable JSON examples of what the API returns. Developers love concrete examples.",
+      checklist: [
+        "Review new analysis endpoint structure",
+        "Draft example JSON responses",
+        "Add a 'How it Works' section",
+        "Fix any broken links in the current README"
+      ],
+      learningTopics: ["Writing Good Documentation", "Markdown Best Practices", "Developer Experience (DX)"],
+      initialCode: `## Repository Analysis API
+
+The new analysis API allows you to fetch insights about any connected repository.
+
+### Example Request
+
+\`\`\`bash
+curl -X POST /api/analyze \\
+  -H "Authorization: Bearer <token>" \\
+  -d '{"repo": "owner/repo"}'
+\`\`\`
+
+### Example Response
+
+<!-- Add the JSON response example below -->
+`
+    }
   ]
 };

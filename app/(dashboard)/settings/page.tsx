@@ -35,7 +35,6 @@ export default function SettingsPage() {
     { id: 'github', label: 'GitHub', icon: GithubIcon },
     { id: 'api', label: 'API Keys', icon: Key },
     { id: 'notifications', label: 'Notifications', icon: Bell },
-    { id: 'appearance', label: 'Appearance', icon: Palette },
     { id: 'security', label: 'Security', icon: Shield },
   ];
 
@@ -73,11 +72,10 @@ export default function SettingsPage() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ${
-                    activeTab === tab.id
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ${activeTab === tab.id
                       ? 'bg-[#c0c1ff]/10 text-[#c0c1ff] border border-[#c0c1ff]/20'
                       : 'text-gray-400 hover:bg-[#353436] border border-transparent'
-                  }`}
+                    }`}
                 >
                   <Icon className="w-4 h-4" />
                   {tab.label}
@@ -158,7 +156,7 @@ export default function SettingsPage() {
                     </div>
                     <CheckCircle2 className="w-5 h-5 text-green-500" />
                   </div>
-                  
+
                   <div className="space-y-3 text-sm">
                     <div className="flex justify-between">
                       <span className="text-gray-400">Username</span>
@@ -276,62 +274,6 @@ export default function SettingsPage() {
                       </label>
                     </div>
                   ))}
-                </div>
-              </div>
-            )}
-
-            {/* Appearance Tab */}
-            {activeTab === 'appearance' && (
-              <div className="space-y-6">
-                <div>
-                  <h2 className="text-xl font-semibold text-white mb-1">Appearance Settings</h2>
-                  <p className="text-gray-400 text-sm">Customize how Devspace Mentor AI looks.</p>
-                </div>
-
-                <div className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-3">
-                      Theme
-                    </label>
-                    <div className="grid grid-cols-3 gap-3">
-                      {['Dark', 'Light', 'System'].map((theme) => (
-                        <button
-                          key={theme}
-                          className={`p-4 rounded-lg border-2 transition-all ${
-                            theme === 'Dark'
-                              ? 'border-[#c0c1ff] bg-[#c0c1ff]/10'
-                              : 'border-[#464554] hover:border-[#c0c1ff]/50'
-                          }`}
-                        >
-                          <div className="text-white font-medium mb-1">{theme}</div>
-                          <div className="text-gray-400 text-xs">
-                            {theme === 'Dark' && 'Current'}
-                            {theme === 'Light' && 'Coming soon'}
-                            {theme === 'System' && 'Auto'}
-                          </div>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-3">
-                      Accent Color
-                    </label>
-                    <div className="flex gap-3">
-                      {['#c0c1ff', '#4cd7f6', '#ffb783', '#ff6b9d'].map((color) => (
-                        <button
-                          key={color}
-                          className={`w-12 h-12 rounded-lg border-2 transition-all ${
-                            color === '#c0c1ff'
-                              ? 'border-white scale-110'
-                              : 'border-transparent hover:scale-105'
-                          }`}
-                          style={{ backgroundColor: color }}
-                        />
-                      ))}
-                    </div>
-                  </div>
                 </div>
               </div>
             )}

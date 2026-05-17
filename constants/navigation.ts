@@ -1,7 +1,6 @@
 import {
   LayoutDashboard,
   FolderGit,
-  MessageSquare,
   GraduationCap,
   FileText,
   Settings,
@@ -22,11 +21,7 @@ export const navigationItems: NavigationItem[] = [
     href: "/repository",
     icon: FolderGit,
   },
-  {
-    name: "AI Chat",
-    href: "/chat",
-    icon: MessageSquare,
-  },
+
   {
     name: "Learning Paths",
     href: "/learning",
